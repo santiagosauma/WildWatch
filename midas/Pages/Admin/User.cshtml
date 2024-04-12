@@ -1,0 +1,33 @@
+﻿@page
+@model midas.Pages.Admin.UserModel
+@{
+    ViewData["Title"] = "User Admin";
+}
+
+<h1>En user</h1>
+@if (Model.Users != null && Model.Users.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Date</td>
+                    <td>@user.Progress%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div>No user data</div>
+}

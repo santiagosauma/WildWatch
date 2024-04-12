@@ -1,0 +1,203 @@
+﻿@page "{id:int}"
+
+@model midas.Pages.UserModel
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="d-flex" style="height: 100vh; overflow: hidden;">
+    <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page" style="display: block;">
+                    <img src="~/images/Estesi.png" alt="Dashboard" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page" style="display: block;">
+                    <img src="~/images/dotmenu.png" alt="Menú" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="flex-grow-1 p-3">
+        <h1 class="mb-0">Dashboard de Usuario</h1>
+        <p class="mb-1">¡Bienvenido de vuelta!</p>
+        <div style="width: 100%; display: flex; gap: 15px; height: calc(100% - 80px);">
+            <div style="display: grid; grid-template-columns: 1fr; grid-template-rows: 40% 60%; gap: 10px; width: 50%;">
+                <div class="p-3 d-flex align-items-center" style="background-color: #8C8C8C; border-radius: 10px;">
+                    <!-- Contenido del primer cuadro grande en la columna 1 -->
+                    <div class ="rounded-circle d-flex me-5" style="background-color: #D9D9D9; width: 150px; height: 150px;">
+                        
+                    </div>
+                    <div class="">
+                        @if (Model.CurrentUser.Name != null)
+                        {
+                            <p class="mb-0"><span class="fw-bold">Nombre: </span>@Model.CurrentUser.Name</p>
+                            <p class="mb-0"><span class="fw-bold">Género: </span>@Model.CurrentUser.Gender</p>
+                            <p class="mb-0"><span class="fw-bold">Fecha Inicio: </span>@Model.CurrentUser.Date</p>
+                            <p class="mb-0"><span class="fw-bold">Edad: </span>@Model.CurrentUser.Age</p>
+                            <p class="mb-0"><span class="fw-bold">Ubicación: </span>@Model.CurrentUser.Location</p>
+                        }
+                        else
+                        {
+                            <div>User not found</div>
+                        }
+                    </div>
+                </div>
+                <div style="background-color: #8C8C8C; border-radius: 10px;">
+                    <!-- Contenido del segundo cuadro más pequeño en la columna 1 -->
+                    <div class="p-3" style="width: 100%; height: 100%">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr; grid-template-rows: 55% 45%; gap: 10px; width: 50%;">
+                <div class="p-4 text-center" style="background-color: #2B5628; color: #F5F5F5">
+                    <!-- Contenido del tercer cuadro más pequeño en la columna 2 -->
+                    <h2 class="mb-0 fw-bold">LEADERBOARD</h2>
+                    <p class="fw-light">Los jugadores con mejores puntuaciones</p>
+                    @if (Model.Leaderboard != null && Model.Leaderboard.Any())
+                    {
+                        <table class="table text-start">
+                            <thead style="background-color: #CFC8AE">
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Puntaje</th>
+                                    <th>Región</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #F5EFD9 ">
+                                @foreach (var lead in Model.Leaderboard)
+                                {
+                                    <tr>
+                                        <td>@lead.Name</td>
+                                        <td>@lead.Score</td>
+                                        <td>@lead.Location</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div>No leaderboard found</div>
+                    }
+                </div>
+                <div>
+                    <!-- Contenido del cuarto cuadro más grande en la columna 2 -->
+                    <table class="table text-start m-0" style="height: 100%;">
+                        <thead style="background-color: #CFC8AE">
+                            <tr>
+                                <th>Minijuego</th>
+                                <th>Puntaje</th>
+                                <th>Minutos Totales Jugados</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: #F5EFD9 ">
+                            @if (Model.MinigameScores != null && Model.MinigameScores.Any())
+                            {
+                                @foreach (var minigame in Model.MinigameScores)
+                                {
+                                    <tr>
+                                        <td>@minigame.Minigame</td>
+                                        <td>
+                                            <div class="progress-container rounded-pill" style="width: 200px; height: 20px; background-color: #D9D9D9;">
+                                                <div class="progress-bar rounded-pill" style="width: @(minigame.Score * 100 / 90)%; height: 100%; background-color: #A0AF14;">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>@minigame.Time</td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Parse the data from Razor into JavaScript variables
+        var minigameScores = @Html.Raw(Json.Serialize(Model.MinigameScores.Select(ms => ms.Score)));
+        var minigameMistakes = @Html.Raw(Json.Serialize(Model.MinigameScores.Select(ms => ms.Mistakes)));
+        var minigameLabels = @Html.Raw(Json.Serialize(Model.MinigameScores.Select(ms => ms.Minigame)));
+
+        // Set up the data for the chart
+        var data = {
+            labels: minigameLabels,
+            datasets: [{
+                label: 'Puntuación',
+                backgroundColor: 'rgba(43, 86, 40, 1)',
+                borderWidth: 0,
+                data: minigameScores
+            },
+            {
+                label: 'Equivocaciones (unidad)',
+                backgroundColor: 'rgba(160, 175, 20, 1)',
+                borderWidth: 0,
+                data: minigameMistakes
+            }]
+        };
+
+        // Configuration for the chart
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false, // Remove grid lines
+                        drawBorder: false // Remove border around the chart
+                    },
+                    ticks: {
+                        color: '#000', // Set ticks color to black
+                        font: {
+                            size: 14, // Adjust tick label size
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false, // Remove grid lines
+                        drawBorder: false // Remove border around the chart
+                    },
+                    ticks: {
+                        color: '#000', // Set ticks color to black
+                        font: {
+                            size: 14, // Adjust tick label size
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#000', // Set legend text color to black
+                        font: {
+                            size: 16, // Adjust legend font size
+                        }
+                    }
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        // Select the element to display the chart in
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        // Create the chart using the chart element and the data and options defined above
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            color: '#000',
+            options: options
+        });
+    </script>
+}

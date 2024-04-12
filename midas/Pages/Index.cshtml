@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="full-bg"></div>
+
+<div class="text-center container vh-100 vw-100 d-flex flex-column justify-content-center align-items-center text-white" style="overflow: hidden; position: relative;">
+    <a href="https://www.somosawaq.org" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); max-width: 10%; margin-top: 15px">
+        <img src="~/images/awaq-logo-white.png" alt="AWAQ Estaciones Biológicas" style="max-width: 100%; display: block;">
+    </a>
+    <div style="background-color: rgba(255, 255, 255, 0.9); position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); padding: 1rem; box-sizing: border-box;">
+        <h1 style="font-weight: 700; font-size: 42px;color: #000;">¡Conviértete en biomonitor!</h1>
+        <p style="font-weight: 600; font-size: 20px ;color: #000; max-width: 600px; margin-left: auto; margin-right: auto;">Únete al programa de Biomonitoreo de AWAQ y haz tu parte en la conservación de la biodiversidad. Participa en el seguimiento de especies y ecosistemas, y ayuda a proteger nuestro mundo natural. Tu contribución es clave. ¡Regístrate ahora y comienza a hacer la diferencia!</p>
+        <a class="btn btn-primary awaq-btn-primary btn-block rounded-pill" href="/Login" style="max-width: 200px; margin: 0 auto; display: block;">Ingresar</a>
+    </div>
+</div>
