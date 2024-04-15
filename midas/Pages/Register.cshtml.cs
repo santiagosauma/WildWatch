@@ -11,37 +11,39 @@ namespace midas.Pages
     public class RegisterModel : PageModel
     {
         [BindProperty]
-        [Required, MaxLength(255)]
+        [Required(ErrorMessage = "El nombre es obligatorio.")]
+        [MaxLength(255, ErrorMessage = "El nombre no debe exceder los 255 caracteres.")]
         public string? Name { get; set; }
 
         [BindProperty]
-        [Required, EmailAddress, MaxLength(255)]
+        [Required(ErrorMessage = "El correo electrónico es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El formato del correo electrónico no es válido.")]
+        [MaxLength(255, ErrorMessage = "El correo electrónico no debe exceder los 255 caracteres.")]
         public string? Mail { get; set; }
 
         [BindProperty]
-        [Required, DataType(DataType.Password), MinLength(6)]
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
+        [DataType(DataType.Password)]
+        [MinLength(6, ErrorMessage = "La contraseña debe tener al menos 6 caracteres.")]
         public string? Password { get; set; }
 
         [BindProperty]
-        public int? Age { get; set; } = 0; // Valor predeterminado
-
-        [BindProperty]
-        public string? Gender { get; set; } = "No especificado"; // Valor predeterminado
-
-        [BindProperty]
-        public string? Locality { get; set; } = "No especificada"; // Valor predeterminado
+        [Required(ErrorMessage = "Debe aceptar los términos y condiciones para continuar.")]
+        public bool AcceptedTerms { get; set; }
 
         public string? Message { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            // Eliminar verificaciones de campos que no son estrictamente necesarios
-            ModelState.Remove("Gender");
-            ModelState.Remove("Locality");
-
             if (!ModelState.IsValid)
             {
-                Message = "La entrada es inv�lida. Por favor, int�ntalo de nuevo.";
+                Message = "Hay errores en el formulario. Por favor, revísalos.";
+                return Page();
+            }
+
+            if (!AcceptedTerms)
+            {
+                Message = "Debe aceptar los términos y condiciones para registrarse.";
                 return Page();
             }
 
@@ -51,23 +53,19 @@ namespace midas.Pages
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    var query = "INSERT INTO Usuario (email, clave, Is_Admin, Nombre, fecha_inicio, Edad, Genero, Localidad) VALUES (@Mail, SHA2(@Password, 256), 0, @Name, CURDATE(), @Age, @Gender, @Locality); SELECT LAST_INSERT_ID();";
+                    var query = "INSERT INTO Usuario (email, clave, Is_Admin, Nombre, fecha_inicio) VALUES (@Mail, SHA2(@Password, 256), 0, @Name, CURDATE()); SELECT LAST_INSERT_ID();";
 
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Mail", Mail);
                         command.Parameters.AddWithValue("@Password", Password);
                         command.Parameters.AddWithValue("@Name", Name);
-                        command.Parameters.AddWithValue("@Age", Age);
-                        command.Parameters.AddWithValue("@Gender", Gender);
-                        command.Parameters.AddWithValue("@Locality", Locality);
 
                         var userId = await command.ExecuteScalarAsync();
                         HttpContext.Session.SetString("UserID", userId.ToString());
+                        return RedirectToPage("/Form");
                     }
                 }
-                Message = "Registro exitoso. �Bienvenido a nuestra comunidad!";
-                return RedirectToPage("/Form");
             }
             catch (Exception ex)
             {

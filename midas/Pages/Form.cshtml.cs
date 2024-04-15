@@ -11,15 +11,15 @@ namespace midas.Pages
     public class FormModel : PageModel
     {
         [BindProperty]
-        [Required]
+        [Required(ErrorMessage = "La fecha de nacimiento es obligatoria.")]
         public DateTime BirthDate { get; set; }
 
         [BindProperty]
-        [Required]
+        [Required(ErrorMessage = "El género es obligatorio.")]
         public string Gender { get; set; }
 
         [BindProperty]
-        [Required]
+        [Required(ErrorMessage = "La ciudad es obligatoria.")]
         public string City { get; set; }
 
         public string Message { get; set; }
@@ -40,7 +40,7 @@ namespace midas.Pages
             if (userIdString == null || !int.TryParse(userIdString, out int userId))
             {
                 Message = "No se pudo recuperar el ID de usuario. Por favor, inicie sesión nuevamente.";
-                return RedirectToPage("/Register");
+                return RedirectToPage("/Login");
             }
 
             string connectionString = "server=localhost;user=root;database=wildwatch;port=3306;password=";
@@ -49,36 +49,26 @@ namespace midas.Pages
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    var hoy = DateTime.Today;
-                    var edad = hoy.Year - BirthDate.Year;
-                    if (BirthDate > hoy.AddYears(-edad)) edad--;
-
-                    // Normaliza el género a los valores esperados por la base de datos
-                    string generoNormalizado = Gender switch
-                    {
-                        "male" => "Masculino",
-                        "female" => "Femenino",
-                        "other" => "Otro",
-                        _ => "Otro", // Considera un valor predeterminado o maneja como un caso de error
-                    };
+                    var edad = DateTime.Today.Year - BirthDate.Year;
+                    if (BirthDate.Date > DateTime.Today.AddYears(-edad)) edad--;
 
                     var query = @"
-                UPDATE Usuario
-                SET Edad = @Edad, Genero = @Gender, Localidad = @City
-                WHERE ID_Usuario = @UserID;";
+                        UPDATE Usuario
+                        SET Edad = @Edad, Genero = @Gender, Localidad = @City
+                        WHERE ID_Usuario = @UserID;";
 
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@UserID", userId);
                         command.Parameters.AddWithValue("@Edad", edad);
-                        command.Parameters.AddWithValue("@Gender", generoNormalizado);
+                        command.Parameters.AddWithValue("@Gender", Gender);
                         command.Parameters.AddWithValue("@City", City);
 
                         await command.ExecuteNonQueryAsync();
                     }
                 }
                 Message = "Información guardada exitosamente.";
-                return RedirectToPage("/Success");
+                return RedirectToPage("/User", new { id = userId });
             }
             catch (Exception ex)
             {
