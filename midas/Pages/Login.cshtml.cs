@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
 namespace midas.Pages
@@ -10,9 +11,13 @@ namespace midas.Pages
     public class LoginModel : PageModel
     {
         [BindProperty]
+        [Required(ErrorMessage = "El campo de correo electrónico es obligatorio.")]
+        [EmailAddress(ErrorMessage = "Debe ingresar una dirección de correo válida.")]
         public string? Mail { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "El campo de contraseña es obligatorio.")]
+        [StringLength(100, ErrorMessage = "La contraseña debe tener entre 6 y 100 caracteres.", MinimumLength = 6)]
         public string? Password { get; set; }
 
         public string? Message { get; set; }
@@ -21,7 +26,7 @@ namespace midas.Pages
         {
             if (!ModelState.IsValid)
             {
-                Message = "Entrada inv�lida. Por favor, int�ntalo de nuevo.";
+                Message = "Entrada inválida. Por favor, inténtalo de nuevo.";
                 return Page();
             }
 
@@ -42,11 +47,9 @@ namespace midas.Pages
                             if (reader.Read())
                             {
                                 var userId = reader["ID_Usuario"].ToString();
-
                                 byte[] isAdminBytes = (byte[])reader["Is_Admin"];
-                                bool isAdmin = isAdminBytes[0] == 49; // 49 is ASCII for '1'
+                                bool isAdmin = isAdminBytes[0] == 49;  // 49 is ASCII for '1'
 
-                                // Message = "Inicio de sesi�n exitoso. Bienvenido de vuelta.";
                                 if (isAdmin)
                                 {
                                     return RedirectToPage("/Admin/General");
@@ -58,7 +61,7 @@ namespace midas.Pages
                             }
                             else
                             {
-                                Message = "Correo electr�nico o contrase�a incorrectos.";
+                                Message = "Correo electrónico o contraseña incorrectos.";
                                 return Page();
                             }
                         }
