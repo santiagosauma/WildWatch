@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using midas.Models;
 
+
 namespace midas.Pages.Admin
 {
 	public class UserModel : PageModel
@@ -24,17 +25,28 @@ namespace midas.Pages.Admin
             };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
         }
 
         public List<User> Users { get; set; }
+        public User CurrentUser { get; set; }
         public List<Mistakes> Mistakes { get; set; }
+        public List<MinigameScore> MinigameScores { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             // Send request to https://localhost:7026/api/UserDashboard to fill data
 
             Users = await GetUsersAsync();
-           
+            if (id.HasValue)
+            {
+                // If there's userID, send request to https://localhost:7026/api/Mistakes/{id} to fill user data
+                Mistakes = await GetMistakesById(id.Value);
+                MinigameScores = await GetMinigameScores(id.Value);
+                CurrentUser = await GetUserById(id.Value);
+            }
+
             return Page();
         }
 
@@ -55,5 +67,60 @@ namespace midas.Pages.Admin
             }
             return new List<User>();
         }
+
+        public async Task<List<Mistakes>> GetMistakesById(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync("api/Mistakes/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Mistakes>>(jsonString);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write("Error: " + e.Message);
+            }
+            return new List<Mistakes>();
+        }
+
+        public async Task<List<MinigameScore>> GetMinigameScores(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync("api/UserDashboard/MinigameScores/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<MinigameScore>>(jsonString);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write("Error: " + e.Message);
+            }
+            return new List<MinigameScore>();
+        }
+
+        public async Task<User> GetUserById(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync("api/UserDashboard/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<User>(jsonString);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write("Error: " + e.Message);
+            }
+            return new User();
+        }
+
     }
 }
