@@ -63,15 +63,15 @@ namespace midas.Pages
             string uniqueFileNameID = Guid.NewGuid().ToString() + "_" + Path.GetFileName(IDImage.FileName);
 
             // Save profile image
-            var profileImagePath = Path.Combine(uploadsFolder, uniqueFileNameProfile);
-            using (var fileStream = new FileStream(profileImagePath, FileMode.Create))
+            var profileImagePath = "/uploads/" + uniqueFileNameProfile;
+            using (var fileStream = new FileStream(Path.Combine(uploadsFolder, uniqueFileNameProfile), FileMode.Create))
             {
                 await ProfileImage.CopyToAsync(fileStream);
             }
 
             // Save ID image
-            var idImagePath = Path.Combine(uploadsFolder, uniqueFileNameID);
-            using (var fileStream = new FileStream(idImagePath, FileMode.Create))
+            var idImagePath = "/uploads/" + uniqueFileNameID;
+            using (var fileStream = new FileStream(Path.Combine(uploadsFolder, uniqueFileNameID), FileMode.Create))
             {
                 await IDImage.CopyToAsync(fileStream);
             }

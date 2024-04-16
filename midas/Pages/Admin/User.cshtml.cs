@@ -54,7 +54,7 @@ namespace midas.Pages.Admin
         {
             try
             {
-                HttpResponseMessage response = await client.GetAsync("api/UserDashboard");
+                HttpResponseMessage response = await client.GetAsync("api/UserDashboard/");
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonString = await response.Content.ReadAsStringAsync();
