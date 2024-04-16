@@ -53,7 +53,18 @@
                                     @foreach (var user in Model.Users)
                                     {
                                         <tr>
-                                            <td><a asp-page="/Admin/User" asp-route-id="@user.ID">@user.Name</a></td>
+                                            <td class="d-flex">
+                                                <div class="rounded-circle d-flex me-2" style="background-color: #D9D9D9; width: 24px; height: 24px;">
+                                                    @if (user.ProfilePicture != null)
+                                                    {
+                                                        <img src="@user.ProfilePicture" style="width: 100%; height: 100%; border-radius: inherit;" />
+
+                                                    }
+                                                </div>
+                                                <a asp-page="/Admin/User" asp-route-id="@user.ID">
+                                                    @user.Name
+                                                </a>
+                                            </td>
                                             <td>@user.Date</td>
                                             <td class="d-flex">
                                                 <div class="progress-container rounded-pill" style="width: 200px; height: 20px; background-color: #D9D9D9;">
@@ -75,7 +86,11 @@
                     @if (Model.CurrentUser != null && Model.CurrentUser.Name != null)
                         {
                         <div class="rounded-circle d-flex me-5" style="background-color: #D9D9D9; width: 150px; height: 150px;">
-                            <img src="@Model.CurrentUser.ProfilePicture" style="width: 100%; height: 100%; border-radius: inherit;" alt="@Model.CurrentUser.Name" />
+                            @if (Model.CurrentUser.ProfilePicture != null)
+                            {
+                                <img src="@Model.CurrentUser.ProfilePicture" style="width: 100%; height: 100%; border-radius: inherit;" />
+
+                            }
                         </div>
                         <div class="text-start" >
 
@@ -95,8 +110,7 @@
                 </div>
                 <div class="p-3" style="background-color: #AFAFAF; border-radius: 10px;">
                     <div style="height: 100%; width: 100%; overflow-y: auto;">
-                        @if (Model.Mistakes != null && Model.Mistakes.Any())
-                            {
+
                             <table class="table text-start m-0" style="height: 100%; overflow: hidden;">
                                 <thead style="background-color: #CFC8AE">
                                     <tr>
@@ -106,20 +120,24 @@
                                     </tr>
                                 </thead>
                                 <tbody style="background-color: #F5EFD9 ">
-
-                                    @foreach (var mistake in Model.Mistakes)
+                                    @if (Model.Mistakes != null && Model.Mistakes.Any())
+                                    {
+                                        @foreach (var mistake in Model.Mistakes)
                                         {
-                                        <tr>
-                                            <td>@mistake.Type</td>
-                                            <td>@mistake.Minigame</td>
-                                            <td>@mistake.Description</td>
-                                        </tr>
+                                            <tr>
+                                                <td>@mistake.Type</td>
+                                                <td>@mistake.Minigame</td>
+                                                <td>@mistake.Description</td>
+                                            </tr>
                                         }
-                                    
 
+                                    } else
+{
+                                            <tr><td class="text-center" colspan="3">El usuario no ha cometido ningún error</td></tr>
+}
                                 </tbody>
                             </table>
-                            }
+                            
                         </div>
                 </div>
             </div>
