@@ -47,7 +47,8 @@ namespace midas_api.Controllers
                     new_user.Age = reader["Edad"].ToString();
                     new_user.Location = reader["Localidad"].ToString();
                     new_user.Gender = reader["Genero"].ToString();
-                    UserList.Add(new_user);
+                    new_user.ProfilePicture = reader["FotoPerfil"].ToString();
+                    new_user.IdPicture = reader["FotoID"].ToString();
                 }
             }
 
@@ -68,7 +69,7 @@ namespace midas_api.Controllers
             cmd.Connection = conexion;
 
             // CHANGE QUERY
-            cmd.CommandText = "SELECT \n    u.Nombre, \n    u.fecha_inicio, \n    u.Edad,\n    u.Genero,\n    u.Localidad\nFROM \n    Usuario u\nWHERE \n    u.ID_Usuario = @UserID; -- Replace @UserID with the actual ID of the user.\n";
+            cmd.CommandText = "SELECT \n    u.ID_Usuario, u.FotoPerfil, u.FotoID, u.Nombre, \n    u.fecha_inicio, \n    u.Edad,\n    u.Genero,\n    u.Localidad\nFROM \n    Usuario u\nWHERE \n    u.ID_Usuario = @UserID; -- Replace @UserID with the actual ID of the user.\n";
             cmd.Parameters.AddWithValue("@UserID", id);
             cmd.Prepare();
 
@@ -78,11 +79,14 @@ namespace midas_api.Controllers
                 {
                     var user = new User
                     {
+                        ID = Convert.ToInt32(reader["ID_Usuario"]),
                         Name = reader["nombre"].ToString(),
                         Date = reader["fecha_inicio"].ToString(),
                         Age = reader["Edad"].ToString(),
                         Location = reader["Localidad"].ToString(),
-                        Gender = reader["Genero"].ToString()
+                        Gender = reader["Genero"].ToString(),
+                        ProfilePicture = reader["FotoPerfil"].ToString(),
+                        IdPicture = reader["FotoID"].ToString()
                     };
 
                     return user;
