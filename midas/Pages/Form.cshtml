@@ -10,7 +10,7 @@
         <div class="col-md-6 bg-cover-custom p-0">
         </div>
         <div class="col-md-6 p-0">
-            <form method="post" class="max-w-600 p-4 mx-auto">
+            <form method="post" class="max-w-600 p-4 mx-auto" enctype="multipart/form-data">
                 @if (!string.IsNullOrEmpty(Model.Message))
                 {
                     <div class="alert @(Model.Message.Contains("exitoso") ? "alert-success" : "alert-danger")" role="alert">
@@ -44,6 +44,16 @@
                 <div class="form-label-group mb-2">
                     <label for="city">Ciudad</label>
                     <input type="text" id="city" name="city" class="form-control" placeholder="Ex: Buenos Aires, Medellín, etc..." required>
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="profileImage">Profile Image</label>
+                    <input type="file" id="profileImage" name="ProfileImage" class="form-control">
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="idImage">ID Image</label>
+                    <input type="file" id="idImage" name="IDImage" class="form-control" required>
                 </div>
 
                 <button class="btn awaq-btn-primary text-white w-100" type="submit">Enviar</button>
