@@ -58,15 +58,19 @@ namespace midas.Pages
                 Directory.CreateDirectory(uploadsFolder);
             }
 
+            // Generate unique file names
+            string uniqueFileNameProfile = Guid.NewGuid().ToString() + "_" + Path.GetFileName(ProfileImage.FileName);
+            string uniqueFileNameID = Guid.NewGuid().ToString() + "_" + Path.GetFileName(IDImage.FileName);
+
             // Save profile image
-            var profileImagePath = Path.Combine(uploadsFolder, ProfileImage.FileName);
+            var profileImagePath = Path.Combine(uploadsFolder, uniqueFileNameProfile);
             using (var fileStream = new FileStream(profileImagePath, FileMode.Create))
             {
                 await ProfileImage.CopyToAsync(fileStream);
             }
 
             // Save ID image
-            var idImagePath = Path.Combine(uploadsFolder, IDImage.FileName);
+            var idImagePath = Path.Combine(uploadsFolder, uniqueFileNameID);
             using (var fileStream = new FileStream(idImagePath, FileMode.Create))
             {
                 await IDImage.CopyToAsync(fileStream);
