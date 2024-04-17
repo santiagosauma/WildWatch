@@ -47,17 +47,26 @@ namespace midas.Pages
                             if (reader.Read())
                             {
                                 var userId = reader["ID_Usuario"].ToString();
+                                byte[] isActiveBytes = (byte[])reader["Is_Active"];
                                 byte[] isAdminBytes = (byte[])reader["Is_Admin"];
                                 bool isAdmin = isAdminBytes[0] == 49;  // 49 is ASCII for '1'
+                                bool isActive = isActiveBytes[0] == 49;  // 49 is ASCII for '1'
+                                if (isActive)
+                                {
+                                    if (isAdmin)
+                                    {
+                                        return RedirectToPage("/Admin/General");
+                                    }
+                                    else
+                                    {
+                                        return RedirectToPage("/User", new { id = userId });
+                                    }
+                                } else
+                                {
+                                    Message = "Su cuenta ha sido inhabilitada. Contacte un administrador.";
+                                    return Page();
+                                }
 
-                                if (isAdmin)
-                                {
-                                    return RedirectToPage("/Admin/General");
-                                }
-                                else
-                                {
-                                    return RedirectToPage("/User", new { id = userId });
-                                }
                             }
                             else
                             {
