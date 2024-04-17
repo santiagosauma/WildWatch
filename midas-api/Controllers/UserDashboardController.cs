@@ -30,7 +30,7 @@ namespace midas_api.Controllers
             cmd.Connection = conexion;
 
             // CHANGE QUERY
-            cmd.CommandText = "SELECT \n    u.ID_Usuario, \n    u.Nombre, \n    u.FotoPerfil,\n    u.FotoID,\n    u.fecha_inicio, \n    u.Edad, \n    u.Genero, \n    u.Localidad, \n    (COUNT(DISTINCT CASE WHEN p.Puntaje >= 80 THEN p.ID_CatalogoMinijuegos ELSE NULL END) * 20) AS `progreso`\nFROM \n    Usuario u \nLEFT JOIN \n    Partida p ON u.ID_Usuario = p.ID_Usuario_FK\nGROUP BY \n    u.ID_Usuario, \n    u.Nombre, \n    u.fecha_inicio, \n    u.Edad, \n    u.Genero, \n    u.Localidad;";
+            cmd.CommandText = "SELECT u.ID_Usuario, u.Nombre, u.FotoPerfil, u.FotoID, u.fecha_inicio, u.Edad, u.Genero, u.Localidad, (COUNT(DISTINCT CASE WHEN p.Puntaje >= 80 THEN p.ID_CatalogoMinijuegos ELSE NULL END) * 20) AS `progreso` FROM Usuario u LEFT JOIN Partida p ON u.ID_Usuario = p.ID_Usuario_FK WHERE u.is_Active = 1 GROUP BY u.ID_Usuario, u.Nombre, u.fecha_inicio, u.Edad, u.Genero, u.Localidad;";
             cmd.Prepare();
 
             User new_user = new User();
