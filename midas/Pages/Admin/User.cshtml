@@ -110,7 +110,8 @@
                 </div>
                 <div class="p-3" style="background-color: #AFAFAF; border-radius: 10px;">
                     <div style="height: 100%; width: 100%; overflow-y: auto;">
-
+                        @if (Model.CurrentUser != null && Model.CurrentUser.Name != null)
+                            {
                             <table class="table text-start m-0" style="height: 100%; overflow: hidden;">
                                 <thead style="background-color: #CFC8AE">
                                     <tr>
@@ -121,24 +122,25 @@
                                 </thead>
                                 <tbody style="background-color: #F5EFD9 ">
                                     @if (Model.Mistakes != null && Model.Mistakes.Any())
-                                    {
-                                        @foreach (var mistake in Model.Mistakes)
                                         {
+                                        @foreach (var mistake in Model.Mistakes)
+                                            {
                                             <tr>
                                                 <td>@mistake.Type</td>
                                                 <td>@mistake.Minigame</td>
                                                 <td>@mistake.Description</td>
                                             </tr>
-                                        }
+                                            }
 
-                                    } else
-{
-                                            <tr><td class="text-center" colspan="3">El usuario no ha cometido ningún error</td></tr>
-}
+                                        }
+                                        else
+                                        {
+                                        <tr><td class="text-center" colspan="3">El usuario no ha cometido ningún error</td></tr>
+                                        }
                                 </tbody>
                             </table>
-                            
-                        </div>
+                            }
+                    </div>
                 </div>
             </div>
         </div>
