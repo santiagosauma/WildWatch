@@ -36,7 +36,7 @@ namespace midas.Pages
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    var query = "SELECT ID_Usuario, Is_Admin FROM Usuario WHERE email = @Mail AND clave = SHA2(@Password, 256)";
+                    var query = "SELECT ID_Usuario, Is_Admin, Is_Active FROM Usuario WHERE email = @Mail AND clave = SHA2(@Password, 256)";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Mail", Mail);
