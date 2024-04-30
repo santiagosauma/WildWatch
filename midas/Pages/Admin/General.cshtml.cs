@@ -14,8 +14,6 @@ namespace midas.Pages.Admin
 	public class GeneralModel : PageModel
     {
         private static readonly HttpClient client;
-
-        // Constructor
         static GeneralModel ()
         {
             client = new HttpClient
@@ -30,7 +28,6 @@ namespace midas.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync()
         {
-            // Send request to https://localhost:7026/api/AdminDashboard/CompletitionsByAge to fill data
 
             CompletitionsByAge = await GetCompletitionsAsync();
 

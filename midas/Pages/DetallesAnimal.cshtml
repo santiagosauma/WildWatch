@@ -1,0 +1,108 @@
+﻿@page "/DetallesAnimal/{id:int}"
+@model midas.Pages.DetallesAnimalModel
+@{
+    ViewData["Title"] = "Detalles del Animal";
+}
+
+<style>
+    .container-fluid {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 75px);
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .full-width, .half-width {
+        background-color: #AFAFAF;
+        border-radius: 0.5rem;
+        padding: 20px;
+        margin: 7.5px;
+        box-sizing: border-box;
+        flex: 1;
+        position: relative;
+    }
+
+    .half-width {
+        width: calc(50% - 15px);
+        height: calc(50vh - 40px);
+    }
+
+    .full-width {
+        width: calc(100% - 15px);
+        height: calc(50vh - 30px);
+    }
+
+    .container-title {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .container-image {
+        width: 90%;
+        height: 90%;
+        border-radius: 0.5rem;
+        background: white;
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        background-image: url('@Model.Animal.Imagen');
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+<div class="d-flex" style="height: 100vh; overflow: hidden;">
+    <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page">
+                    <img src="~/images/Estesi.png" alt="Dashboard" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Pages/User" class="nav-link text-white p-0 my-2">
+                    <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Inventario" class="nav-link text-white p-0 my-2">
+                    <img src="~/images/Notas.png" alt="Menú" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="inventory-header mb-3">
+                    <h1 class="fw-bold">Inventario</h1>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="half-width">
+                <div class="container-title">@Model.Animal.Nombre</div>
+                <div class="container-title" style="top: 40px;">@Model.Animal.NombreCientifico</div>
+            </div>
+            <div class="half-width">
+                <div class="container-image"></div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="full-width">
+                <div class="container-title">Descripción</div>
+                <p style="position: absolute; top: 40px; left: 10px; right: 10px;">@Model.Animal.Descripcion</p>
+            </div>
+        </div>
+    </div>
+</div>

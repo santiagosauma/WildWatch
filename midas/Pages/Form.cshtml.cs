@@ -31,7 +31,6 @@ namespace midas.Pages
         public string City { get; set; }
 
         [BindProperty]
-        // No obligatorio
         public IFormFile ProfileImage { get; set; }
 
         [BindProperty]
@@ -42,13 +41,6 @@ namespace midas.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            /*
-            if (!ModelState.IsValid)
-            {
-                Message = "La entrada es inv�lida. Por favor, int�ntalo de nuevo.";
-                return Page();
-            }
-            */
 
             var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
 

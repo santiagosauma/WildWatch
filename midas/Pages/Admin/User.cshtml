@@ -7,19 +7,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-    <div class="toast show align-items-center @(Model.Message.Contains("exitosamente") ? "alert-success" : "alert-danger")" style="position: absolute; top: 20px; right: 20px; z-index: 999;" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-                @Model.Message
-            </div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-    </div>
-}
-
-
 <div class="d-flex" style="height: 100vh; overflow: hidden;">
     <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #3b2a18;">
         <ul class="nav nav-pills flex-column mb-auto">
@@ -38,7 +25,6 @@
                     <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
                 </a>
             </li>
-
         </ul>
     </div>
 
@@ -97,7 +83,7 @@
                 </div>
                 <div class="p-3 d-flex align-items-center" style="background-color: #AFAFAF; border-radius: 10px;">
                     @if (Model.CurrentUser != null && Model.CurrentUser.Name != null)
-                    {
+                        {
                         <div class="rounded-circle d-flex me-5" style="background-color: #D9D9D9; width: 150px; height: 150px;">
                             @if (Model.CurrentUser.ProfilePicture != null)
                             {
@@ -105,23 +91,17 @@
 
                             }
                         </div>
-                        <div class="text-start me-5">
+                        <div class="text-start" >
 
                             <p class="mb-0"><span class="fw-bold">Nombre: </span>@Model.CurrentUser.Name</p>
                             <p class="mb-0"><span class="fw-bold">Género: </span>@Model.CurrentUser.Gender</p>
                             <p class="mb-0"><span class="fw-bold">Fecha Inicio: </span>@Model.CurrentUser.Date</p>
                             <p class="mb-0"><span class="fw-bold">Edad: </span>@Model.CurrentUser.Age</p>
                             <p class="mb-0"><span class="fw-bold">Ubicación: </span>@Model.CurrentUser.Location</p>
-
+                            
                         </div>
-                        <div>
-                            <form method="post" onsubmit="return confirm('¿Estás seguro que quieres deshabilitar a @Model.CurrentUser.Name?')">
-                                <input type="hidden" name="userId" value="@Model.CurrentUser.ID" />
-                                <button class="btn btn-danger text-white w-100" type="submit">Deshabilitar Usuario</button>
-                            </form>
-                        </div>
-                    }
-                </div>
+                        }
+                    </div>
             </div>
             <div style="display: grid; grid-template-columns: 1fr; grid-template-rows: 45% 55%; gap: 10px; width: 40%;">
                 <div class="p-2" style="background-color: #AFAFAF; border-radius: 10px;">
@@ -130,7 +110,7 @@
                 <div class="p-3" style="background-color: #AFAFAF; border-radius: 10px;">
                     <div style="height: 100%; width: 100%; overflow-y: auto;">
                         @if (Model.CurrentUser != null && Model.CurrentUser.Name != null)
-                        {
+                            {
                             <table class="table text-start m-0" style="height: 100%; overflow: hidden;">
                                 <thead style="background-color: #CFC8AE">
                                     <tr>
@@ -141,24 +121,24 @@
                                 </thead>
                                 <tbody style="background-color: #F5EFD9 ">
                                     @if (Model.Mistakes != null && Model.Mistakes.Any())
-                                    {
-                                        @foreach (var mistake in Model.Mistakes)
                                         {
+                                        @foreach (var mistake in Model.Mistakes)
+                                            {
                                             <tr>
                                                 <td>@mistake.Type</td>
                                                 <td>@mistake.Minigame</td>
                                                 <td>@mistake.Description</td>
                                             </tr>
-                                        }
+                                            }
 
-                                    }
-                                    else
-                                    {
+                                        }
+                                        else
+                                        {
                                         <tr><td class="text-center" colspan="3">El usuario no ha cometido ningún error</td></tr>
-                                    }
+                                        }
                                 </tbody>
                             </table>
-                        }
+                            }
                     </div>
                 </div>
             </div>
