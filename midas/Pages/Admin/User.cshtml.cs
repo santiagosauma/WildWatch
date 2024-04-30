@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using midas.Models;
-using MySql.Data.MySqlClient;
+
 
 namespace midas.Pages.Admin
 {
@@ -33,12 +33,9 @@ namespace midas.Pages.Admin
         public List<Mistakes> Mistakes { get; set; }
         public List<MinigameScore> MinigameScores { get; set; }
 
-        public string? Message { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Message = TempData["Message"] as string;
-
             // Send request to https://localhost:7026/api/UserDashboard to fill data
 
             Users = await GetUsersAsync();
@@ -124,43 +121,6 @@ namespace midas.Pages.Admin
             }
             return new User();
         }
-
-        public async Task<IActionResult> OnPostAsync(int? userId)
-        {
-            if (userId == null)
-            {
-                TempData["Message"] = "No se pudo recuperar el ID de usuario";
-                Message = "No se pudo recuperar el ID de usuario";
-                return RedirectToPage();
-            }
-
-            string connectionString = "server=localhost;user=root;database=wildwatch;port=3306;password=";
-            try
-            {
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    await connection.OpenAsync();
-                    var query = @"
-                UPDATE Usuario
-                SET is_Active = 0
-                WHERE ID_Usuario = @UserID;";
-
-                    using (var command = new MySqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@UserID", userId);
-                        await command.ExecuteNonQueryAsync();
-                    }
-                }
-                TempData["Message"] = "Usuario deshabilitado exitosamente";
-                return RedirectToPage("/Admin/User", new { id = "" });
-            }
-            catch (Exception ex)
-            {
-                TempData["Message"] = $"Error al guardar la información: {ex.Message}";
-                return RedirectToPage();
-            }
-        }
-
 
     }
 }
