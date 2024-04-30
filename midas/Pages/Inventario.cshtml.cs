@@ -29,7 +29,7 @@ namespace midas.Pages
                         {
                             SeresVivos.Add(new SerVivo
                             {
-                                ID = reader.GetInt32("ID_CatalogoSeres"),
+                                ID = Convert.ToInt32(reader["ID_CatalogoSeres"]),
                                 Nombre = reader["Nombre"].ToString(),
                                 Imagen = reader["Imagen"].ToString()
                             });
@@ -56,7 +56,7 @@ namespace midas.Pages
                         {
                             SeresVivos.Add(new SerVivo
                             {
-                                ID = reader.GetInt32("ID_CatalogoSeres"),
+                                ID = Convert.ToInt32(reader["ID_CatalogoSeres"]),
                                 Nombre = reader["Nombre"].ToString(),
                                 Imagen = reader["Imagen"].ToString()
                             });
@@ -83,7 +83,7 @@ namespace midas.Pages
                         {
                             SeresVivos.Add(new SerVivo
                             {
-                                ID = reader.GetInt32("ID_CatalogoSeres"),
+                                ID = Convert.ToInt32(reader["ID_CatalogoSeres"]),
                                 Nombre = reader["Nombre"].ToString(),
                                 Imagen = reader["Imagen"].ToString()
                             });

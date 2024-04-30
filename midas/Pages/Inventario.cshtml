@@ -200,15 +200,17 @@
 
     function displayAnimals(data) {
         var mainContent = document.querySelector('.inventory-main-content');
-        mainContent.innerHTML = '';
+        mainContent.innerHTML = ''; // Clear the main content
         data.forEach(ser => {
-            var card = document.createElement('div');
+            // Create an anchor element for each animal
+            var card = document.createElement('a');
+            card.href = `/DetallesAnimal/${ser.id}`; // Assuming ID is a property in your data
             card.className = 'animal-card';
             card.innerHTML = `
-                <img src="${ser.imagen}" alt="Imagen de ${ser.nombre}" style="height: 180px; object-fit: cover;">
-                <h5>${ser.nombre}</h5>
-            `;
-            mainContent.appendChild(card);
+            <img src="${ser.imagen}" alt="Imagen de ${ser.nombre}" style="height: 180px; object-fit: cover;">
+            <h5>${ser.nombre}</h5>
+        `;
+            mainContent.appendChild(card); // Append the anchor to the main content
         });
     }
 </script>
