@@ -38,15 +38,6 @@
         height: calc(50vh - 30px);
     }
 
-    .container-title {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        color: black;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
     .container-image {
         width: 90%;
         height: 90%;
@@ -91,8 +82,9 @@
         </div>
         <div class="flex-row">
             <div class="half-width">
-                <div class="container-title">@Model.Animal.Nombre</div>
-                <div class="container-title" style="top: 40px;">@Model.Animal.NombreCientifico</div>
+                <div style="font-size: 20px; font-weight: bold;">@Model.Animal.Nombre</div>
+                <div style="font-size: 20px; font-weight: bold;">@Model.Animal.NombreCientifico</div>
+                <button onclick="playSound('@Model.Animal.Sonido')">Play Sound</button>
             </div>
             <div class="half-width">
                 <div class="container-image"></div>
@@ -106,3 +98,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function playSound(audioFile) {
+        var audio = new Audio(audioFile);
+        audio.play();
+    }
+</script>

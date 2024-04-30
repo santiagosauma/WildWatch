@@ -7,5 +7,6 @@
         public string? NombreCientifico { get; set; }
         public string? Imagen { get; set; }
         public string? Descripcion { get; set; }
+        public string? Sonido { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace midas.Pages
 {
     public class DetallesAnimalModel : PageModel
     {
-        private readonly string _connectionString = "server=localhost;port=3306;database=wildwatch;user=root;password="; // Asegúrate de reemplazar 'your_password_here' con la contraseña real de tu base de datos.
+        private readonly string _connectionString = "server=localhost;port=3306;database=wildwatch;user=root;password="; // Asegï¿½rate de reemplazar 'your_password_here' con la contraseï¿½a real de tu base de datos.
 
         public SerVivo Animal { get; set; }
 
@@ -18,7 +18,8 @@ namespace midas.Pages
             using (var connection = new MySqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                var sql = "SELECT ID_CatalogoSeres, Nombre, NombreCientifico, Imagen, Descripcion FROM CatalogoSeres WHERE ID_CatalogoSeres = @Id";
+                var sql = "SELECT ID_CatalogoSeres, Nombre, NombreCientifico, Imagen, Descripcion, Sonido FROM CatalogoSeres WHERE ID_CatalogoSeres = @Id";
+
                 using (var command = new MySqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@Id", id);
@@ -32,7 +33,8 @@ namespace midas.Pages
                                 Nombre = reader.GetString("Nombre"),
                                 NombreCientifico = reader.GetString("NombreCientifico"),
                                 Imagen = reader.GetString("Imagen"),
-                                Descripcion = reader.GetString("Descripcion")
+                                Descripcion = reader.GetString("Descripcion"),
+                                Sonido = reader.GetString("Sonido")
                             };
                         }
                         else

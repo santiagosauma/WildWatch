@@ -14,8 +14,10 @@
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
     <Content Remove="wwwroot\uploads\" />
+    <Content Remove="wwwroot\audio\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\audio\" />
   </ItemGroup>
 </Project>
