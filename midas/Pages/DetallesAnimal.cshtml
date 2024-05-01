@@ -9,7 +9,6 @@
         padding: 15px;
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 75px);
     }
 
     .main-container {
@@ -18,6 +17,7 @@
         border-radius: 10px;
         padding: 15px;
         box-sizing: border-box;
+        height: 100%;
     }
 
     .flex-row {
@@ -47,30 +47,6 @@
         height: calc(44vh - 53px);
     }
 
-    .container-title {
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: black;
-        font-size: 60px;
-        font-weight: bold;
-        width: 100%;
-        text-align: center;
-    }
-
-    .container-image {
-        width: fill;
-        height: fill;
-        background: white;
-        position: absolute;
-        top: 5%;
-        left: 5%;
-        background-image: url('@Model.Animal.Imagen');
-        background-size: cover;
-        background-position: center;
-    }
-
     .inventory-title {
         text-align: left;
         font-size: 24px;
@@ -84,20 +60,6 @@
         background-color: transparent;
         cursor: pointer;
         margin-right: 10px;
-    }
-
-    .description-title {
-        font-size: 30px;
-        text-align: center;
-    }
-
-    .description-text {
-        position: absolute;
-        top: 70px;
-        left: 10px;
-        right: 10px;
-        font-size: 20px;
-        text-align: center;
     }
 </style>
 
@@ -123,22 +85,34 @@
     </div>
     <div class="container-fluid">
         <div class="inventory-title">
-            <button class="back-button"><img src="~/images/flecha.png" alt="Back" style="width:40px; height:40px;"/></button>
-            Inventario - @Model.Animal.Nombre
+            <a href="/Inventario" class="nav-link text-white p-0 my-2" aria-current="page">
+                <img src="~/images/flecha.png" alt="Back" style="width:40px; height:40px;" />
+            </a>
+                Inventario - @Model.Animal.Nombre
         </div>
         <div class="main-container">
-            <div class="flex-row">
-                <div class="half-width">
-                    <div class="container-title">@Model.Animal.Nombre</div>
-                    <div class="container-title" style="top: 40px; margin-top:20px">@Model.Animal.NombreCientifico</div>
+            <div class="row mb-4" style="height: 60%;">
+                <div class="col d-flex flex-column justify-content-center" style="height: 100%">
+                    <div class="text-center mb-2">
+                        <h1 class="fs-1 fw-semibold">@Model.Animal.Nombre</h1>
+                        <h2 class="fs-1 fw-medium fst-italic">(@Model.Animal.NombreCientifico)</h2>
+                    </div>
+                    <div class="text-center">
+                        @if (Model.Animal.Sonido != null) { 
+                            <audio controls controlsList="nodownload noplaybackrate">
+                                <source src="@Model.Animal.Sonido" type="audio/mpeg">
+                                No se puede reproducir audio en tu navegador
+                            </audio>
+                         }
+                    </div>
                 </div>
-                <div class="half-width">
-                    <div class="container-image"></div>
+                <div class="col" style="height: 100%">
+                    <img src="@Model.Animal.Imagen" style="width: 100%; height: 100%; border-radius: inherit; object-fit: cover;"/>
                 </div>
             </div>
-            <div class="flex-row">
-                <div class="full-width">
-                    <div class="description-title">Descripción</div>
+            <div class="row" style="height: 40%;">
+                <div>
+                    <h3 class="text-start description-title fst-italic">Descripción:</h3>
                     <p class="description-text">@Model.Animal.Descripcion</p>
                 </div>
             </div>
