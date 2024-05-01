@@ -17,9 +17,13 @@ namespace midas.Pages
         // Constructor
         static UserModel()
         {
-            client = new HttpClient
+            var handler = new HttpClientHandler();
+            // WARNING: Only use this in a development environment.
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+
+            client = new HttpClient(handler)
             {
-                BaseAddress = new Uri("https://localhost:7026")
+                BaseAddress = new Uri("https://10.22.156.99:7026")
             };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -31,7 +35,7 @@ namespace midas.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            // Send request to https://localhost:7026/api/UserDashboard/{id} to fill data of a single User
+            // Send request to https://10.22.156.99:7026/api/UserDashboard/{id} to fill data of a single User
 
             CurrentUser = await GetUsersAsync(id);
             Leaderboard = await GetLeadearboardAsync();
