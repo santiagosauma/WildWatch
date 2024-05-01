@@ -67,7 +67,7 @@ namespace midas_api.Controllers
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            cmd.CommandText = "SELECT \n    cm.Tipo AS 'Minigame',\n    COALESCE(MAX(p.Puntaje), 0) AS 'Score'\nFROM \n    CatalogoMinijuegos cm\nLEFT JOIN (\n    SELECT \n        ID_CatalogoMinijuegos,\n        Puntaje\n    FROM \n        Partida\n    WHERE \n        ID_Usuario_FK = 1\n) p ON cm.ID_CatalogoMinijuegos = p.ID_CatalogoMinijuegos\nGROUP BY cm.ID_CatalogoMinijuegos\nORDER BY \n    cm.ID_CatalogoMinijuegos;";
+            cmd.CommandText = "SELECT \n    cm.Tipo AS 'Minigame',\n    COALESCE(MAX(p.Puntaje), 0) AS 'Score'\nFROM \n    CatalogoMinijuegos cm\nLEFT JOIN (\n    SELECT \n        ID_CatalogoMinijuegos,\n        Puntaje\n    FROM \n        Partida\n    WHERE \n        ID_Usuario_FK = @UserID\n) p ON cm.ID_CatalogoMinijuegos = p.ID_CatalogoMinijuegos\nGROUP BY cm.ID_CatalogoMinijuegos\nORDER BY \n    cm.ID_CatalogoMinijuegos;";
             cmd.Parameters.AddWithValue("@UserID", id);
             cmd.Prepare();
 
