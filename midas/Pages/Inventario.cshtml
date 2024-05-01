@@ -5,9 +5,6 @@
 }
 
 <style>
-    .inventory-header {
-        padding-left: 15px;
-    }
 
     .inventory-search-container, .inventory-categories {
         background-color: #AFAFAF;
@@ -34,35 +31,18 @@
                 background-color: #E0D0C9;
             }
 
-    .inventory-main-content {
-        background-color: #AFAFAF;
-        border-radius: .5rem;
-        overflow: auto;
-        height: calc(100vh - 80px);
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        padding: 15px;
-        margin-bottom: 10px;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-left:15px;
-    }
 
     .animal-card {
-        background-color: #FFFFFF;
-        border: 1px solid #CCCCCC;
-        border-radius: .5rem;
-        width: 310px;
-        height: 250px;
-        overflow: hidden;
-        cursor: pointer;
-        margin-bottom: 15px;
         display: flex;
         flex-direction: column;
     }
 
+        .animal-card > * {
+            cursor: pointer;
+        }
+
         .animal-card img {
+
             width: 100%;
             flex-grow: 1;
             object-fit: cover;
@@ -76,26 +56,14 @@
             color: #000;
             text-align: center;
             padding: 10px;
-            flex-shrink: 0; 
+            flex-shrink: 0;
             width: 100%;
+            border-bottom-left-radius: .5rem;
+            border-bottom-right-radius: .5rem;
         }
 
-    .container-fluid > .row > .col-3 {
-        padding: 0;
-        padding-left: 27px;
-    }
-
-    .container-fluid > .row > .col-9 {
-        padding: 0;
-        padding-left: 15px;
-        padding-right: 27px;
-    }
-
-    .container-fluid {
-        padding: 0;
-    }
-
     a {
+        cursor: default;
         text-decoration: none;
     }
 
@@ -110,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/Pages/User" class="nav-link text-white p-0 my-2">
+                <a href="/User" class="nav-link text-white p-0 my-2">
                     <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
                 </a>
             </li>
@@ -121,15 +89,15 @@
             </li>
         </ul>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid p-3">
         <div class="row">
             <div class="col-12">
-                <div class="inventory-header mb-3">
+                <div class="mb-3">
                     <h1 class="fw-bold">Inventario</h1>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="height: calc(100vh - 94px);">
             <div class="col-3">
                 <div class="inventory-search-container">
                     <label for="search" class="form-label" style="font-weight:bold">Buscar:</label>
@@ -146,20 +114,10 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-9">
-                <div class="inventory-main-content">
-                    <div>
-                        <div style="margin-left:10px;">
-                            @foreach (var ser in Model.SeresVivos)
-                            {
-                                    <a href="@Url.Page("/DetallesAnimal", new { id = ser.ID })" class="animal-card" style="">
-                                        <img src="@ser.Imagen" alt="Imagen de @ser.Nombre">
-                                        <h5>@ser.Nombre</h5>
-                                    </a>
-                            }
-                        </div>
+            <div class="col-9 h-100 inventory">
+                    <div class="inventory-main-content">
+
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -187,7 +145,7 @@
         var inventoryContent = document.getElementById('inventory-main-content');
 
         searchInput.addEventListener('input', function () {
-            if (this.value.length >= 3) {
+            if (this.value.length >= 2) {
                 fetch(`/Inventario?handler=Buscar&search=${encodeURIComponent(this.value)}`)
                     .then(response => response.json())
                     .then(data => {

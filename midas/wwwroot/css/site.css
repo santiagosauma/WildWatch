@@ -118,3 +118,26 @@ awaq-btn-primary:active {
     height: calc(1.5em + 0.75rem + 2px);
 }
 
+
+.inventory-main-content {
+    background-color: #AFAFAF;
+    border-radius: .5rem;
+    overflow: auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .inventory-main-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .inventory-main-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
