@@ -101,20 +101,19 @@ namespace midas_api.Controllers
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    var query = "INSERT INTO wildwatch.Partida\n(ID_Usuario_FK, ID_CatalogoMinijuegos, Fecha, Puntaje, Tiempo)\nVALUES(@UserID, @MinigameID, @Date, @Points, @Time);";
+                    var query = "INSERT INTO wildwatch.Partida (ID_Usuario_FK, ID_CatalogoMinijuegos, Fecha, Puntaje, Tiempo) VALUES (@UserID, @MinigameID, @Date, @Points, @Time);";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@UserID", minigameRequest.UserID);
                         command.Parameters.AddWithValue("@MinigameID", minigameRequest.MinigameID);
-                        command.Parameters.AddWithValue("@Date", dateTime.ToString("yyyy/MM/dd"));
+                        command.Parameters.AddWithValue("@Date", dateTime.ToString("yyyy-MM-dd"));
                         command.Parameters.AddWithValue("@Points", minigameRequest.Points);
                         command.Parameters.AddWithValue("@Time", minigameRequest.Time);
 
-                        using (var reader = await command.ExecuteReaderAsync())
-                        {
-                            var matchID = await command.ExecuteScalarAsync();
-                            return Json(new { message = "Insercion correcta" });
-                        }
+                        await command.ExecuteNonQueryAsync(); // Executes the insert command
+                        var matchID = command.LastInsertedId; // Retrieves the ID of the inserted record
+
+                        return Json(new { message = "Inserción correcta", MatchID = matchID });
                     }
                 }
             }
@@ -123,6 +122,7 @@ namespace midas_api.Controllers
                 return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
             }
         }
+
 
     }
 
