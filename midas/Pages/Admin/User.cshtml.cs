@@ -19,13 +19,16 @@ namespace midas.Pages.Admin
         // Constructor
         static UserModel()
         {
-            client = new HttpClient
+            var handler = new HttpClientHandler();
+            // WARNING: Only use this in a development environment.
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+
+            client = new HttpClient(handler)
             {
-                BaseAddress = new Uri("https://localhost:7026")
+                BaseAddress = new Uri("https://10.22.156.99:7026")
             };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
         }
 
         public List<User> Users { get; set; }
@@ -36,12 +39,9 @@ namespace midas.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            // Send request to https://localhost:7026/api/UserDashboard to fill data
-
             Users = await GetUsersAsync();
             if (id.HasValue)
             {
-                // If there's userID, send request to https://localhost:7026/api/Mistakes/{id} to fill user data
                 Mistakes = await GetMistakesById(id.Value);
                 MinigameScores = await GetMinigameScores(id.Value);
                 CurrentUser = await GetUserById(id.Value);

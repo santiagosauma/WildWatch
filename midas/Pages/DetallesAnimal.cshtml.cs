@@ -9,7 +9,7 @@ namespace midas.Pages
 {
     public class DetallesAnimalModel : PageModel
     {
-        private readonly string _connectionString = "server=localhost;port=3306;database=wildwatch;user=root;password="; // Aseg�rate de reemplazar 'your_password_here' con la contrase�a real de tu base de datos.
+        string _connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
 
         public SerVivo Animal { get; set; }
 

@@ -10,7 +10,7 @@ namespace midas.Pages
 {
     public class InventarioModel : PageModel
     {
-        private readonly string _connectionString = "server=localhost;port=3306;database=wildwatch;user=root;password=";
+        string _connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
 
         public List<SerVivo> SeresVivos { get; set; } = new List<SerVivo>();
 
