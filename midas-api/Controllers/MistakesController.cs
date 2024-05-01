@@ -23,7 +23,7 @@ namespace midas_api.Controllers
         [HttpGet("{id}")]
         public IEnumerable<Mistakes> Get(int id)
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=wildwatch;Uid=root;password='';";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 

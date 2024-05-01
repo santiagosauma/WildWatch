@@ -16,7 +16,7 @@ namespace midas_api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] LoginRequest loginRequest)
         {
-            string connectionString = "server=localhost;user=root;database=wildwatch;port=3306;password=";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             try
             {
                 using (var connection = new MySqlConnection(connectionString))
@@ -60,14 +60,14 @@ namespace midas_api.Controllers
         [HttpGet("MinigameScores/{id}")]
         public IEnumerable<MinigameScore> GetMinigameScoresByUserID(int id)
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=wildwatch;Uid=root;password='';";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            cmd.CommandText = "SELECT \n    cm.Tipo AS 'Minigame',\n    COALESCE(p.Puntaje, 0) AS 'Score',\n    COALESCE((\n        SELECT COUNT(*)\n        FROM Partida_Errores\n        WHERE ID_Partida = p.ID_Partida\n    ), 0) AS 'Mistakes',\n    COALESCE((\n        SELECT SUM(Tiempo)\n        FROM Partida\n        WHERE ID_Usuario_FK = @UserID AND ID_CatalogoMinijuegos = cm.ID_CatalogoMinijuegos\n    ), 0) AS 'Time'\nFROM \n    CatalogoMinijuegos cm\nLEFT JOIN (\n    SELECT \n        ID_Partida,\n        ID_Usuario_FK,\n        ID_CatalogoMinijuegos,\n        Puntaje,\n        Fecha\n    FROM \n        Partida\n    WHERE \n        ID_Usuario_FK = @UserID AND\n        Fecha IN (\n            SELECT MAX(Fecha) \n            FROM Partida \n            WHERE ID_Usuario_FK = @UserID\n            GROUP BY ID_CatalogoMinijuegos\n        )\n) p ON cm.ID_CatalogoMinijuegos = p.ID_CatalogoMinijuegos\nORDER BY \n    cm.ID_CatalogoMinijuegos;\n";
+            cmd.CommandText = "SELECT \n    cm.Tipo AS 'Minigame',\n    COALESCE(MAX(p.Puntaje), 0) AS 'Score'\nFROM \n    CatalogoMinijuegos cm\nLEFT JOIN (\n    SELECT \n        ID_CatalogoMinijuegos,\n        Puntaje\n    FROM \n        Partida\n    WHERE \n        ID_Usuario_FK = 1\n) p ON cm.ID_CatalogoMinijuegos = p.ID_CatalogoMinijuegos\nGROUP BY cm.ID_CatalogoMinijuegos\nORDER BY \n    cm.ID_CatalogoMinijuegos;";
             cmd.Parameters.AddWithValue("@UserID", id);
             cmd.Prepare();
 
@@ -94,7 +94,7 @@ namespace midas_api.Controllers
         [HttpPost("Minigame")]
         public async Task<IActionResult> PostMinigameData([FromBody] MinigameRequest minigameRequest)
         {
-            string connectionString = "server=localhost;user=root;database=wildwatch;port=3306;password=";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             try
             {
                 DateTime dateTime = DateTime.UtcNow.Date;

@@ -22,7 +22,7 @@ namespace midas_api.Controllers
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=wildwatch;Uid=root;password='';";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
@@ -62,7 +62,7 @@ namespace midas_api.Controllers
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=wildwatch;Uid=root;password='';";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";;
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
@@ -104,7 +104,7 @@ namespace midas_api.Controllers
         [HttpGet("MinigameScores/{id}")]
         public IEnumerable<MinigameScore> GetMinigameScoresByUserID(int id)
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=wildwatch;Uid=root;password='';";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
@@ -141,7 +141,7 @@ namespace midas_api.Controllers
         [HttpGet("Leaderboard")]
         public IEnumerable<Leaderboard> GetLeaderboard()
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=wildwatch;Uid=root;password='';";
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
