@@ -40,20 +40,19 @@
                     </select>
                 </div>
 
-
                 <div class="form-label-group mb-2">
                     <label for="city">Ciudad</label>
                     <input type="text" id="city" name="city" class="form-control" placeholder="Ex: Buenos Aires, Medellín, etc..." required>
                 </div>
 
                 <div class="form-label-group mb-2">
-                    <label for="profileImage">Profile Image</label>
-                    <input type="file" id="profileImage" name="ProfileImage" class="form-control">
+                    <label for="profileImage">Imagen de Perfil</label>
+                    <input type="file" id="profileImage" name="ProfileImage" class="form-control" accept="image/jpeg, image/png">
                 </div>
 
                 <div class="form-label-group mb-2">
-                    <label for="idImage">ID Image</label>
-                    <input type="file" id="idImage" name="IDImage" class="form-control" required>
+                    <label for="idImage">Imagen de Identificación</label>
+                    <input type="file" id="idImage" name="IDImage" class="form-control" required accept="image/jpeg, image/png">
                 </div>
 
                 <button class="btn awaq-btn-primary text-white w-100" type="submit">Enviar</button>
@@ -69,4 +68,10 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("profileImage").setAttribute("title", "Selecciona una imagen de perfil");
+            document.getElementById("idImage").setAttribute("title", "Selecciona una imagen de identificación");
+        });
+    </script>
 }

@@ -12,36 +12,56 @@
         height: calc(100vh - 75px);
     }
 
+    .main-container {
+        background-color: #F8E8B6;
+        border: 20px solid #CDA373;
+        border-radius: 10px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
     .flex-row {
         display: flex;
         flex-wrap: wrap;
+        gap: 15px;
         margin-bottom: 15px;
+        background-color: transparent;
     }
 
     .full-width, .half-width {
-        background-color: #AFAFAF;
-        border-radius: 0.5rem;
         padding: 20px;
-        margin: 7.5px;
         box-sizing: border-box;
         flex: 1;
         position: relative;
+        background-color: transparent;
+        border-radius: 0;
     }
 
     .half-width {
         width: calc(50% - 15px);
-        height: calc(50vh - 40px);
+        height: calc(44vh - 43px);
     }
 
     .full-width {
-        width: calc(100% - 15px);
-        height: calc(50vh - 30px);
+        width: calc(100% - 30px);
+        height: calc(44vh - 53px);
+    }
+
+    .container-title {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: black;
+        font-size: 60px;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
     }
 
     .container-image {
-        width: 90%;
-        height: 90%;
-        border-radius: 0.5rem;
+        width: fill;
+        height: fill;
         background: white;
         position: absolute;
         top: 5%;
@@ -50,7 +70,37 @@
         background-size: cover;
         background-position: center;
     }
+
+    .inventory-title {
+        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .back-button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .description-title {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .description-text {
+        position: absolute;
+        top: 70px;
+        left: 10px;
+        right: 10px;
+        font-size: 20px;
+        text-align: center;
+    }
 </style>
+
 <div class="d-flex" style="height: 100vh; overflow: hidden;">
     <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
         <ul class="nav nav-pills flex-column mb-auto">
@@ -72,36 +122,26 @@
         </ul>
     </div>
     <div class="container-fluid">
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="inventory-header mb-3">
-                    <h1 class="fw-bold">Inventario</h1>
+        <div class="inventory-title">
+            <button class="back-button"><img src="~/images/flecha.png" alt="Back" style="width:40px; height:40px;"/></button>
+            Inventario - @Model.Animal.Nombre
+        </div>
+        <div class="main-container">
+            <div class="flex-row">
+                <div class="half-width">
+                    <div class="container-title">@Model.Animal.Nombre</div>
+                    <div class="container-title" style="top: 40px; margin-top:20px">@Model.Animal.NombreCientifico</div>
+                </div>
+                <div class="half-width">
+                    <div class="container-image"></div>
                 </div>
             </div>
-        </div>
-        <div class="flex-row">
-            <div class="half-width">
-                <div style="font-size: 20px; font-weight: bold;">@Model.Animal.Nombre</div>
-                <div style="font-size: 20px; font-weight: bold;">@Model.Animal.NombreCientifico</div>
-                <button onclick="playSound('@Model.Animal.Sonido')">Play Sound</button>
-            </div>
-            <div class="half-width">
-                <div class="container-image"></div>
-            </div>
-        </div>
-        <div class="flex-row">
-            <div class="full-width">
-                <div class="container-title">Descripción</div>
-                <p style="position: absolute; top: 40px; left: 10px; right: 10px;">@Model.Animal.Descripcion</p>
+            <div class="flex-row">
+                <div class="full-width">
+                    <div class="description-title">Descripción</div>
+                    <p class="description-text">@Model.Animal.Descripcion</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    function playSound(audioFile) {
-        var audio = new Audio(audioFile);
-        audio.play();
-    }
-</script>
