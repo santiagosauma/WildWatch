@@ -34,7 +34,7 @@ namespace midas.Pages
                                 NombreCientifico = reader.GetString("NombreCientifico"),
                                 Imagen = reader.GetString("Imagen"),
                                 Descripcion = reader.GetString("Descripcion"),
-                                Sonido = reader.GetString("Sonido")
+                                Sonido = reader.IsDBNull(reader.GetOrdinal("Sonido")) ? null : reader.GetString("Sonido")
                             };
                         }
                         else
