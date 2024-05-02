@@ -49,18 +49,15 @@ namespace midas.Pages
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            // Generate unique file names
             string uniqueFileNameProfile = Guid.NewGuid().ToString() + "_" + Path.GetFileName(ProfileImage.FileName);
             string uniqueFileNameID = Guid.NewGuid().ToString() + "_" + Path.GetFileName(IDImage.FileName);
 
-            // Save profile image
             var profileImagePath = "/uploads/" + uniqueFileNameProfile;
             using (var fileStream = new FileStream(Path.Combine(uploadsFolder, uniqueFileNameProfile), FileMode.Create))
             {
                 await ProfileImage.CopyToAsync(fileStream);
             }
 
-            // Save ID image
             var idImagePath = "/uploads/" + uniqueFileNameID;
             using (var fileStream = new FileStream(Path.Combine(uploadsFolder, uniqueFileNameID), FileMode.Create))
             {

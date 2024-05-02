@@ -5,7 +5,7 @@
     ViewData["Title"] = "User Admin";
 }
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/chart.js"></script>
 @if (!string.IsNullOrEmpty(Model.Message))
 {
     <div class="toast show align-items-center @(Model.Message.Contains("exitosamente") ? "alert-success" : "alert-danger")" style="position: absolute; top: 20px; right: 20px; z-index: 999;" role="alert" aria-live="assertive" aria-atomic="true">
@@ -164,6 +164,7 @@
 </div>
 
 @section Scripts {
+    <script src="https://unpkg.com/chart.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const searchInput = document.getElementById('userSearch');

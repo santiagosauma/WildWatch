@@ -16,15 +16,14 @@ namespace midas.Pages.Admin
     {
         private static readonly HttpClient client;
 
-        // Constructor
         static UserModel()
         {
             var handler = new HttpClientHandler();
-            // WARNING: Only use this in a development environment.
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
 
             client = new HttpClient(handler)
             {
+                // BaseAddress = new Uri("https://localhost:7026")
                 BaseAddress = new Uri("https://10.22.156.99:7026")
             };
             client.DefaultRequestHeaders.Accept.Clear();
