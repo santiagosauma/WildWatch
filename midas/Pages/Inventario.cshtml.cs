@@ -10,9 +10,25 @@ namespace midas.Pages
 {
     public class InventarioModel : PageModel
     {
+        public int? UserId { get; private set; }
+
         string _connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
 
         public List<SerVivo> SeresVivos { get; set; } = new List<SerVivo>();
+
+        public void OnGet()
+        {
+            var userIdString = HttpContext.Session.GetString("UserID");
+
+            if (userIdString == null || !int.TryParse(userIdString, out int userId))
+            {
+                Response.Redirect("/Login");
+            }
+            else
+            {
+                UserId = userId;
+            }
+        }
 
         public async Task<IActionResult> OnGetCargarTodosAsync()
         {
@@ -92,16 +108,6 @@ namespace midas.Pages
                 }
             }
             return new JsonResult(SeresVivos);
-        }
-        public IActionResult OnGetRedirectToUserPage()
-        {
-            var userIdString = HttpContext.Session.GetString("UserID");
-            if (userIdString == null || !int.TryParse(userIdString, out int userId))
-            {
-                return RedirectToPage("/Login");
-            }
-            
-            return RedirectToPage("/User", new { id = userId });
         }
     }
 }
