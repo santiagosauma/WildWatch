@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using midas.Models;
@@ -28,6 +29,7 @@ namespace midas.Pages
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+        public int? UserId { get; private set; }
 
         public User CurrentUser { get; set; }
         public List<Leaderboard> Leaderboard { get; set; }
@@ -35,6 +37,20 @@ namespace midas.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (userIdString == null || !int.TryParse(userIdString, out int userId))
+            {
+                return RedirectToPage("/Login");
+            }
+            else
+            {
+                UserId = userId;
+                if(userIdString != null && UserId != id)
+                {
+                    return RedirectToPage("/User", new { id = UserId });
+                }
+            }
+
             // Send request to https://10.22.156.99:7026/api/UserDashboard/{id} to fill data of a single User
 
             CurrentUser = await GetUsersAsync(id);

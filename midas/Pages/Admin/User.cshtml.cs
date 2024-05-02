@@ -40,6 +40,21 @@ namespace midas.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var userIdString = HttpContext.Session.GetString("UserID");
+            var isAdmin = HttpContext.Session.GetString("isAdmin");
+
+            if (userIdString == null || !int.TryParse(userIdString, out int userId))
+            {
+                Response.Redirect("/Login");
+            }
+            else
+            {
+                if (isAdmin == "False")
+                {
+                    return RedirectToPage("/User", new { id = userId });
+                }
+            }
+
             Message = TempData["Message"] as string;
 
             Users = await GetUsersAsync();
