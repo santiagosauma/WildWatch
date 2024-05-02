@@ -9,12 +9,20 @@ namespace midas.Pages
 {
     public class DetallesAnimalModel : PageModel
     {
+
         string _connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
 
         public SerVivo Animal { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+
+    public async Task<IActionResult> OnGetAsync(int id)
         {
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (userIdString == null || !int.TryParse(userIdString, out int userId))
+            {
+                return RedirectToPage("/Login");
+            }
+
             using (var connection = new MySqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
