@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "Dashboard - Administración";
 }
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<head>
+    <script src="https://unpkg.com/chart.js"></script>
+</head>
 
 <div class="d-flex" style="height: 100vh; overflow: hidden;">
     <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #3b2a18;">
@@ -54,7 +55,7 @@
 </div>
 
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/chart.js"></script>
     <script>
         @functions {
             public string SerializeObject(object obj)
@@ -63,11 +64,9 @@
             }
         }
 
-        // Parse the data from Razor into JavaScript variables
         var completionsData = @Html.Raw(SerializeObject(Model.CompletitionsByAge.Select(c => c.Completitions)));
         var ageLabels = @Html.Raw(SerializeObject(Model.CompletitionsByAge.Select(c => c.Range)));
 
-        // Chart.js doughnut chart configuration
         var doughnutData = {
             labels: ageLabels,
             datasets: [{
@@ -99,10 +98,8 @@
             }
         };
 
-        // Get context for the doughnut chart
         var ctxDoughnut = document.getElementById('ageCompletionChart').getContext('2d');
 
-        // Initialize the doughnut chart
         var ageCompletionChart = new Chart(ctxDoughnut, {
             type: 'doughnut',
             data: doughnutData,

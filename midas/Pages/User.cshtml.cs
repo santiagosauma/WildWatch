@@ -24,6 +24,7 @@ namespace midas.Pages
 
             client = new HttpClient(handler)
             {
+                // BaseAddress = new Uri("https://localhost:7026")
                 BaseAddress = new Uri("https://10.22.156.99:7026")
             };
             client.DefaultRequestHeaders.Accept.Clear();
