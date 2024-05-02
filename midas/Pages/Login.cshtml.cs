@@ -26,7 +26,7 @@ namespace midas.Pages
         {
             if (!ModelState.IsValid)
             {
-                Message = "Entrada inválida. Por favor, inténtalo de nuevo.";
+                Message = "El correo electrónico y/o contraseña son incorrectos.";
                 return Page();
             }
 
@@ -62,7 +62,8 @@ namespace midas.Pages
                                     {
                                         return RedirectToPage("/User", new { id = userId });
                                     }
-                                } else
+                                }
+                                else
                                 {
                                     Message = "Su cuenta ha sido inhabilitada. Contacte un administrador.";
                                     return Page();

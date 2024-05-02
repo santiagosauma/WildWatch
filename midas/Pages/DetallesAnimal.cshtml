@@ -5,19 +5,29 @@
 }
 
 <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
     .container-fluid {
-        padding: 15px;
         display: flex;
         flex-direction: column;
+        padding: 15px;
+        height: 100%;
+        overflow: hidden;
     }
 
     .main-container {
         background-color: #F8E8B6;
-        border: 20px solid #CDA373;
+        border: 1vw solid #CDA373;
         border-radius: 10px;
         padding: 15px;
         box-sizing: border-box;
-        height: 100%;
+        height: calc(100% - 30px);
+        overflow: hidden;
     }
 
     .flex-row {
@@ -25,26 +35,21 @@
         flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 15px;
-        background-color: transparent;
     }
 
     .full-width, .half-width {
         padding: 20px;
         box-sizing: border-box;
         flex: 1;
-        position: relative;
-        background-color: transparent;
-        border-radius: 0;
+        min-width: 250px;
     }
 
     .half-width {
-        width: calc(50% - 15px);
-        height: calc(44vh - 43px);
+        flex-basis: 50%;
     }
 
     .full-width {
-        width: calc(100% - 30px);
-        height: calc(44vh - 53px);
+        flex-basis: 100%;
     }
 
     .inventory-title {
@@ -62,6 +67,7 @@
         margin-right: 10px;
     }
 </style>
+
 
 <div class="d-flex" style="height: 100vh; overflow: hidden;">
     <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
@@ -107,7 +113,7 @@
                     </div>
                 </div>
                 <div class="col" style="height: 100%">
-                    <img src="@Model.Animal.Imagen" style="width: 100%; height: 100%; border-radius: inherit; object-fit: cover;"/>
+                    <img src="@Model.Animal.Imagen" style="width: 100%; height: 100%; border-radius: inherit; object-fit: cover; border-radius: 10px"/>
                 </div>
             </div>
             <div class="row" style="height: 40%;">
