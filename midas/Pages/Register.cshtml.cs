@@ -63,6 +63,7 @@ namespace midas.Pages
 
                         var userId = await command.ExecuteScalarAsync();
                         HttpContext.Session.SetString("UserID", userId.ToString());
+                        HttpContext.Session.SetString("isAdmin", "False");
                         return RedirectToPage("/Form");
                     }
                 }
