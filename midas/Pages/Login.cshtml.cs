@@ -47,6 +47,7 @@ namespace midas.Pages
                             if (reader.Read())
                             {
                                 var userId = reader["ID_Usuario"].ToString();
+                                HttpContext.Session.SetString("UserID", userId.ToString());
                                 byte[] isActiveBytes = (byte[])reader["Is_Active"];
                                 byte[] isAdminBytes = (byte[])reader["Is_Admin"];
                                 bool isAdmin = isAdminBytes[0] == 49;  // 49 is ASCII for '1'

@@ -44,7 +44,6 @@ namespace midas.Pages
 
             var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
 
-            // Ensure the directory exists
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
