@@ -93,5 +93,15 @@ namespace midas.Pages
             }
             return new JsonResult(SeresVivos);
         }
+        public IActionResult OnGetRedirectToUserPage()
+        {
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (userIdString == null || !int.TryParse(userIdString, out int userId))
+            {
+                return RedirectToPage("/Login");
+            }
+            
+            return RedirectToPage("/User", new { id = userId });
+        }
     }
 }
