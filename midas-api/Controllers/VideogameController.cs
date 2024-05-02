@@ -160,6 +160,72 @@ namespace midas_api.Controllers
             }
         }
 
+        [HttpPut("Minigame/{id}")]
+        public async Task<IActionResult> UpdateMinigameData(int id, [FromBody] MinigameRequest minigameRequest)
+        {
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    var query = "UPDATE wildwatch.Partida SET ID_Usuario_FK = @UserID, ID_CatalogoMinijuegos = @MinigameID, Fecha = @Date, Puntaje = @Points, Tiempo = @Time WHERE ID_Partida = @MatchID;";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", minigameRequest.UserID);
+                        command.Parameters.AddWithValue("@MinigameID", minigameRequest.MinigameID);
+                        command.Parameters.AddWithValue("@Date", DateTime.UtcNow.Date.ToString("yyyy-MM-dd"));
+                        command.Parameters.AddWithValue("@Points", minigameRequest.Points);
+                        command.Parameters.AddWithValue("@Time", minigameRequest.Time);
+                        command.Parameters.AddWithValue("@MatchID", id);
+
+                        int rowsAffected = await command.ExecuteNonQueryAsync(); // Executes the update command
+
+                        if (rowsAffected > 0)
+                        {
+                            return Json(new { message = "Actualización correcta", MatchID = id });
+                        }
+                        else
+                        {
+                            return NotFound(new { message = "Partida no encontrada" }); // HTTP 404 Not Found
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
+            }
+        }
+
+        [HttpPost("Mistakes")]
+        public async Task<IActionResult> PostMistakesData([FromBody] MistakesRequest mistakesRequest)
+        {
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
+            try
+            {
+                DateTime dateTime = DateTime.UtcNow.Date;
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    var query = "INSERT INTO wildwatch.Partida_Errores (ID_Partida, ID_Errores) VALUES (@MatchID, @MistakeID);";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@MatchID", mistakesRequest.MatchID);
+                        command.Parameters.AddWithValue("@MistakeID", mistakesRequest.MistakeID);
+
+                        await command.ExecuteNonQueryAsync(); // Executes the insert command
+
+                        return Json(new { message = "Inserción correcta" });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
+            }
+        }
+
 
     }
 
