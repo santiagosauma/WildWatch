@@ -57,6 +57,43 @@ namespace midas_api.Controllers
             }
         }
 
+        [HttpGet("isTutorialCompleted/{id}")]
+        public async Task<IActionResult> IsTutorialCompleted(int id)
+        {
+            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) AS GamesPlayed FROM Partida WHERE ID_Usuario_FK = @UserID;", connection))
+                    {
+                        cmd.Parameters.AddWithValue("@UserID", id);
+                        cmd.Prepare();
+
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            if (await reader.ReadAsync())
+                            {
+                                int gamesPlayed = Convert.ToInt32(reader["GamesPlayed"]);
+                                bool isTutorialCompleted = gamesPlayed > 0;
+                                return Json(new { isTutorialCompleted = isTutorialCompleted });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (implement logging as needed)
+                return StatusCode(500, "Internal Server Error: " + ex.Message);
+            }
+
+            return Json(new { isTutorialCompleted = false });
+        }
+
+
         [HttpGet("MinigameScores/{id}")]
         public IEnumerable<MinigameScore> GetMinigameScoresByUserID(int id)
         {
