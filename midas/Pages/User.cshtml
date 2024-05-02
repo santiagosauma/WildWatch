@@ -11,8 +11,18 @@
     <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page" style="display: block;">
+                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page">
                     <img src="~/images/Estesi.png" alt="Dashboard" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2">
+                    <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li the nav-item">
+                <a href="/Inventario" class="nav-link text-white p-0 my-2">
+                    <img src="~/images/Notas.png" alt="Menú" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
                 </a>
             </li>
         </ul>
@@ -26,10 +36,10 @@
                     {
                         <div class="rounded-circle d-flex me-5" style="background-color: #D9D9D9; width: 150px; height: 150px;">
                             @if (Model.CurrentUser.ProfilePicture != null)
-                                {
+                            {
                                 <img src="@Model.CurrentUser.ProfilePicture" style="width: 100%; height: 100%; border-radius: inherit;" />
-                                }
-                            </div>
+                            }
+                        </div>
                         <div class="">
                             <p class="mb-0"><span class="fw-bold">Nombre: </span>@Model.CurrentUser.Name</p>
                             <p class="mb-0"><span class="fw-bold">Género: </span>@Model.CurrentUser.Gender</p>
