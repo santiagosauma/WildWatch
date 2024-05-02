@@ -52,7 +52,7 @@ namespace midas.Pages
                                 byte[] isAdminBytes = (byte[])reader["Is_Admin"];
                                 bool isAdmin = isAdminBytes[0] == 49;  // 49 is ASCII for '1'
                                 bool isActive = isActiveBytes[0] == 49;  // 49 is ASCII for '1'
-
+                                
                                 HttpContext.Session.SetString("isAdmin", isAdmin.ToString());
 
                                 if (isActive)
