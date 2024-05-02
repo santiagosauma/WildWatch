@@ -26,7 +26,7 @@ namespace midas.Pages
         {
             if (!ModelState.IsValid)
             {
-                Message = "Entrada inválida. Por favor, inténtalo de nuevo.";
+                Message = "El correo electrónico y/o contraseña son incorrectos.";
                 return Page();
             }
 
