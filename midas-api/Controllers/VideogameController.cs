@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace midas_api.Controllers
 {
     [Route("api/[controller]")]
@@ -40,12 +38,12 @@ namespace midas_api.Controllers
                                     return Json(new { Success = true, UserID = userId });
                                 } else
                                 {
-                                    return StatusCode(403, "Cuenta deshabilitada. Contacte al administrador."); // HTTP 403 Forbidden
+                                    return StatusCode(403, "Cuenta deshabilitada. Contacte al administrador.");
                                 }
                             }
                             else
                             {
-                                return BadRequest("Correo o contraseña incorrectos."); // HTTP 400 Bad Request
+                                return BadRequest("Correo o contraseña incorrectos.");
                             }
                         }
                     }
@@ -53,7 +51,7 @@ namespace midas_api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
+                return StatusCode(500, $"Error en base de datos: {ex.Message}");
             }
         }
 
@@ -86,7 +84,6 @@ namespace midas_api.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception (implement logging as needed)
                 return StatusCode(500, "Internal Server Error: " + ex.Message);
             }
 
@@ -124,7 +121,6 @@ namespace midas_api.Controllers
 
             conexion.Dispose();
 
-            // Probablemente se ocupe Json()
             return MinigameScoreList;
         }
 
@@ -147,8 +143,8 @@ namespace midas_api.Controllers
                         command.Parameters.AddWithValue("@Points", minigameRequest.Points);
                         command.Parameters.AddWithValue("@Time", minigameRequest.Time);
 
-                        await command.ExecuteNonQueryAsync(); // Executes the insert command
-                        var matchID = command.LastInsertedId; // Retrieves the ID of the inserted record
+                        await command.ExecuteNonQueryAsync(); 
+                        var matchID = command.LastInsertedId;
 
                         return Json(new { message = "Inserción correcta", MatchID = matchID });
                     }
@@ -156,7 +152,7 @@ namespace midas_api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
+                return StatusCode(500, $"Error en base de datos: {ex.Message}");
             }
         }
 
@@ -179,7 +175,7 @@ namespace midas_api.Controllers
                         command.Parameters.AddWithValue("@Time", minigameRequest.Time);
                         command.Parameters.AddWithValue("@MatchID", id);
 
-                        int rowsAffected = await command.ExecuteNonQueryAsync(); // Executes the update command
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
 
                         if (rowsAffected > 0)
                         {
@@ -187,14 +183,14 @@ namespace midas_api.Controllers
                         }
                         else
                         {
-                            return NotFound(new { message = "Partida no encontrada" }); // HTTP 404 Not Found
+                            return NotFound(new { message = "Partida no encontrada" });
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
+                return StatusCode(500, $"Error en base de datos: {ex.Message}");
             }
         }
 
@@ -214,7 +210,7 @@ namespace midas_api.Controllers
                         command.Parameters.AddWithValue("@MatchID", mistakesRequest.MatchID);
                         command.Parameters.AddWithValue("@MistakeID", mistakesRequest.MistakeID);
 
-                        await command.ExecuteNonQueryAsync(); // Executes the insert command
+                        await command.ExecuteNonQueryAsync();
 
                         return Json(new { message = "Inserción correcta" });
                     }
@@ -222,7 +218,7 @@ namespace midas_api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error en base de datos: {ex.Message}"); // HTTP 500 Internal Server Error
+                return StatusCode(500, $"Error en base de datos: {ex.Message}");
             }
         }
 

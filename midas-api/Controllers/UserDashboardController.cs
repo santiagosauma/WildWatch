@@ -11,14 +11,11 @@ using MySql.Data.MySqlClient;
 using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace midas_api.Controllers
 {
     [Route("api/[controller]")]
     public class UserDashboardController : Controller
     {
-        // GET: api/values
         [HttpGet]
         public IEnumerable<User> Get()
         {
@@ -29,7 +26,6 @@ namespace midas_api.Controllers
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            // CHANGE QUERY
             cmd.CommandText = "SELECT u.ID_Usuario, u.Nombre, u.FotoPerfil, u.FotoID, u.fecha_inicio, u.Edad, u.Genero, u.Localidad, (COUNT(DISTINCT CASE WHEN p.Puntaje >= 80 THEN p.ID_CatalogoMinijuegos ELSE NULL END) * 20) AS `progreso` FROM Usuario u LEFT JOIN Partida p ON u.ID_Usuario = p.ID_Usuario_FK WHERE u.is_Active = 1 GROUP BY u.ID_Usuario, u.Nombre, u.fecha_inicio, u.Edad, u.Genero, u.Localidad;";
             cmd.Prepare();
 
@@ -69,7 +65,6 @@ namespace midas_api.Controllers
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            // CHANGE QUERY
             cmd.CommandText = "SELECT \n    u.ID_Usuario, u.FotoPerfil, u.FotoID, u.Nombre, \n    u.fecha_inicio, \n    u.Edad,\n    u.Genero,\n    u.Localidad\nFROM \n    Usuario u\nWHERE \n    u.ID_Usuario = @UserID; -- Replace @UserID with the actual ID of the user.\n";
             cmd.Parameters.AddWithValue("@UserID", id);
             cmd.Prepare();
@@ -111,8 +106,7 @@ namespace midas_api.Controllers
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            // CHANGE QUERY
-            cmd.CommandText = "SELECT \n    cm.Tipo AS 'Minigame',\n    COALESCE(p.Puntaje, 0) AS 'Score',\n    COALESCE((\n        SELECT COUNT(*)\n        FROM Partida_Errores\n        WHERE ID_Partida = p.ID_Partida\n    ), 0) AS 'Mistakes',\n    COALESCE((\n        SELECT SUM(Tiempo)\n        FROM Partida\n        WHERE ID_Usuario_FK = @UserID AND ID_CatalogoMinijuegos = cm.ID_CatalogoMinijuegos\n    ), 0) AS 'Time'\nFROM \n    CatalogoMinijuegos cm\nLEFT JOIN (\n    SELECT \n        ID_Partida,\n        ID_Usuario_FK,\n        ID_CatalogoMinijuegos,\n        Puntaje,\n        Fecha\n    FROM \n        Partida\n    WHERE \n        ID_Usuario_FK = @UserID AND\n        Fecha IN (\n            SELECT MAX(Fecha) \n            FROM Partida \n            WHERE ID_Usuario_FK = @UserID\n            GROUP BY ID_CatalogoMinijuegos\n        )\n) p ON cm.ID_CatalogoMinijuegos = p.ID_CatalogoMinijuegos\nORDER BY \n    cm.ID_CatalogoMinijuegos;\n";
+            cmd.CommandText = "SELECT\n    CatalogoMinijuegos.ID_CatalogoMinijuegos,\n    CatalogoMinijuegos.Tipo,\n    COALESCE(MAX(Partida.Puntaje), 0) AS MaxPuntaje\nFROM\n    (SELECT ID_CatalogoMinijuegos, Tipo FROM CatalogoMinijuegos) AS CatalogoMinijuegos\nLEFT JOIN\n    Partida\nON\n    Partida.ID_CatalogoMinijuegos = CatalogoMinijuegos.ID_CatalogoMinijuegos\n    AND Partida.ID_Usuario_FK = @UserID\nGROUP BY\n    CatalogoMinijuegos.ID_CatalogoMinijuegos, CatalogoMinijuegos.Tipo;";
             cmd.Parameters.AddWithValue("@UserID", id);
             cmd.Prepare();
 
@@ -148,7 +142,6 @@ namespace midas_api.Controllers
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            // CHANGE QUERY
             cmd.CommandText = "SELECT \n    u.Nombre AS Usuario, \n    SUM(max_scores.MaxPuntaje) AS Puntaje, \n    u.Localidad AS Localidad \nFROM \n    Usuario u\nJOIN (\n    SELECT \n        ID_Usuario_FK, \n        MAX(Puntaje) AS MaxPuntaje\n    FROM \n        Partida\n    GROUP BY \n        ID_Usuario_FK, ID_CatalogoMinijuegos\n) AS max_scores ON u.ID_Usuario = max_scores.ID_Usuario_FK\nGROUP BY \n    u.ID_Usuario, u.Nombre, u.Localidad\nORDER BY \n    Puntaje DESC\nLIMIT 5";
             cmd.Prepare();
 

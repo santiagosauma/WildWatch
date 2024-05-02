@@ -5,14 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace midas_api.Controllers
 {
     [Route("api/[controller]")]
     public class AdminDashboardController : Controller
     {
-        // GET: api/values
         [HttpGet("CompletitionsByAge")]
         public IEnumerable<CompletitionsByAge> Get()
         {
@@ -23,7 +20,6 @@ namespace midas_api.Controllers
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
 
-            // CHANGE QUERY
             cmd.CommandText = "SELECT \n  RangoDeEdad,\n  COUNT(*) AS JugadoresConTodosMinijuegosCompletados\nFROM (\n  SELECT \n    U.ID_Usuario,\n    U.Edad,\n    CASE\n      WHEN U.Edad BETWEEN 18 AND 24 THEN '18-24 años'\n      WHEN U.Edad BETWEEN 25 AND 30 THEN '25-30 años'\n      WHEN U.Edad BETWEEN 31 AND 35 THEN '31-35 años'\n      WHEN U.Edad BETWEEN 36 AND 40 THEN '36-40 años'\n      ELSE '41 años en adelante'\n    END AS RangoDeEdad\n  FROM \n    Usuario U\n  JOIN (\n    SELECT \n      ID_Usuario_FK, \n      ID_CatalogoMinijuegos,\n      MAX(Puntaje) AS MaxPuntaje\n    FROM \n      Partida\n    WHERE Puntaje >= 80\n    GROUP BY \n      ID_Usuario_FK, ID_CatalogoMinijuegos\n  ) AS MejoresPuntajes ON U.ID_Usuario = MejoresPuntajes.ID_Usuario_FK\n  GROUP BY \n    U.ID_Usuario\n  HAVING \n    COUNT(DISTINCT MejoresPuntajes.ID_CatalogoMinijuegos) = 5 AND MIN(MejoresPuntajes.MaxPuntaje) >= 80\n) AS UsuariosConTodosMinijuegosCompletados\nGROUP BY \n  RangoDeEdad;";
             cmd.Prepare();
 
