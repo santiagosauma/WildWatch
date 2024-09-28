@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d5fb5e59696c24b97176218611e9e5, type: 3}
+  m_Name: RobinBird
+  m_EditorClassIdentifier: 
+  Name: Pyrocephalus obscurus
+  Description: "El petirrojo es un p\xE1jaro sociable, atrevido y curioso que acostumbra
+    a salir del bosque y plantarse a mitad de un camino para ver qui\xE9n llega a
+    su territorio, emitiendo su caracter\xEDstica voz de alerta: un chip-chip met\xE1lico
+    y seco. Su canto es un gorjeo musical, muy mel\xF3dico, parecido al del ruise\xF1or."
+  Image: {fileID: 21300000, guid: 36aed13bc0ee84d4c8bd5f9e9698c802, type: 3}
+  id: 4
+  nombreComun: "T\xE1nga Rojo"

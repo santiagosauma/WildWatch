@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1985516461539585996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5873549038447097346}
+  - component: {fileID: 6000442042210902037}
+  m_Layer: 0
+  m_Name: IpadController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5873549038447097346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985516461539585996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1719.4082, y: 781.35376, z: 8.775876}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6000442042210902037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985516461539585996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d11a4b3306318d84da14e505e2261df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoInsectos:
+  - 'Acanthodica '
+  - Anisoptera
+  - Coccinellidae
+  - Oruga
+  infoAves:
+  - 'Arrendajo Azul '
+  - "Aguila Arp\xEDa "
+  - 'Pajaro Rojo Piranga Rubra '
+  - 'Pajaro Pelirrojo Pyrocephalus Obscurus '
+  - "Gorri\xF3n Passer Domesticus "
+  infoAnfibios:
+  - Anura
+  - 'Oophaga pumilio '
+  - 'Gekkonidae '
+  - 'Viperinae '
+  infoPlantas:
+  - 'Caesalpinia pulcherrima '
+  - 'Escobedia grandiflora '
+  - 'Magnolia polyhypsophylla '
+  - 'Marsdenia condurango '
+  - Myrmecophila tibicinis
+  infoMamiferos:
+  - Prueba
+  imgInsectos:
+  - {fileID: 21300000, guid: 6eb64ff397f8f2e49b1bcb29a6b0c30c, type: 3}
+  - {fileID: 21300000, guid: 5194db3e7895fab4188ebe205a82ba77, type: 3}
+  - {fileID: 21300000, guid: f0dcc359c93ce274abebe5ad721ca134, type: 3}
+  - {fileID: 21300000, guid: c6bfa1f6867461b43a7bf4fc6a0b3d20, type: 3}
+  imgAves:
+  - {fileID: 21300000, guid: 7b950b5a08b880041bb1be0570a7e6e5, type: 3}
+  - {fileID: 21300000, guid: b9277de0e580b06478f966764153a6f8, type: 3}
+  - {fileID: 21300000, guid: f8313a03653b08c4197a4a061ea6e68e, type: 3}
+  - {fileID: 21300000, guid: 36aed13bc0ee84d4c8bd5f9e9698c802, type: 3}
+  - {fileID: 21300000, guid: 66c7ba85dbf767043b22f37f18f420df, type: 3}
+  imgAnfibios:
+  - {fileID: 21300000, guid: 3b953585343f8b84c9b9b1feef121531, type: 3}
+  - {fileID: 21300000, guid: 39278e43725859c41af5d06c009f8a63, type: 3}
+  - {fileID: 21300000, guid: 63f9d9a66873ae34f9b77e49c7b946a9, type: 3}
+  - {fileID: 21300000, guid: 3a315443249231c4e9b4a28a69f51ce9, type: 3}
+  imgPlantas:
+  - {fileID: 21300000, guid: 47aec793d519e824fbda8f617a5016fc, type: 3}
+  - {fileID: 21300000, guid: dedfa9fb9690ce746a78f9158360c95a, type: 3}
+  - {fileID: 21300000, guid: 5a8353be1ffd16d4992484fc8ec3f63a, type: 3}
+  - {fileID: 21300000, guid: 32d66f68ffb988f47b678bd9790c5067, type: 3}
+  - {fileID: 21300000, guid: 1c632b21a7d39e245b18adb29700b255, type: 3}
+  imgMamiferos:
+  - {fileID: 21300000, guid: bf354d4a1da687641a6723809fd65405, type: 3}
+  quantity: {fileID: 0}
+  muestreoType: {fileID: 0}
+  nameText: {fileID: 0}
+  Image: {fileID: 0}
+  status:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  correct: {fileID: 21300000, guid: ee83764651d153a47845e21cc2f17032, type: 3}
+  incorrect: {fileID: 21300000, guid: 69d2e63d3dcf462409c458dea94bf57c, type: 3}
+  send: {fileID: 0}
+  warning: {fileID: 0}
+  results: {fileID: 0}
+  preResults: {fileID: 0}
+  forms: {fileID: 0}
+  progressBar: {fileID: 0}
+  AnswersData: {fileID: 11400000, guid: 2da12841139f535478f36f2ffe20635b, type: 2}
+  registerTries: {fileID: 0}
+  notFinalMarks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  puntuacion: {fileID: 0}
+  estatusNivel: {fileID: 0}
+  fondo: {fileID: 0}

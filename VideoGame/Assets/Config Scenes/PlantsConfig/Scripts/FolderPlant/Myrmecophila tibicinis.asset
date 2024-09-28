@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d693fbe6f13e19b43b4e0dda85b0c510, type: 3}
+  m_Name: Myrmecophila tibicinis
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 052438782902fd440854f76d841c2968, type: 2}
+  - {fileID: 11400000, guid: 5f13d2e950191584c94f48049b22b957, type: 2}
+  - {fileID: 11400000, guid: 6cc06f479c784e342ae5de42521474e5, type: 2}
+  - {fileID: 11400000, guid: e26d33f2ba621b747898027dea90feb8, type: 2}
+  Name: Myrmecophila tibicinis
+  Image: {fileID: 21300000, guid: 1c632b21a7d39e245b18adb29700b255, type: 3}
+  Description: "Estas plantas poseen las flores de color lila, el l\xF3bulo central
+    lila a\xFAn m\xE1s oscuro y la garganta labelar blanca. Estas plantas tambi\xE9n
+    poseen las largas inflorescencias paniculadas, mostradas en el material original
+    de\_la\_especie."
+  UniqueId: 1
+  nombreComun: "Orqu\xEDdea de trompeta "

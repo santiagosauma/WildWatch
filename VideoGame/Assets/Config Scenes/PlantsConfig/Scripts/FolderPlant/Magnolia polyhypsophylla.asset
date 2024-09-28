@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d693fbe6f13e19b43b4e0dda85b0c510, type: 3}
+  m_Name: Magnolia polyhypsophylla
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: dd8e29d252d94d2429d8ba1125db1284, type: 2}
+  - {fileID: 11400000, guid: 138276ca2b36b6e4e86459bab9736755, type: 2}
+  - {fileID: 11400000, guid: f84d0bd6428507c4fa7873aed9f0671e, type: 2}
+  - {fileID: 11400000, guid: 702d64c256f6a434abd5b3fd89099d80, type: 2}
+  Name: Magnolia polyhypsophylla
+  Image: {fileID: 21300000, guid: 5a8353be1ffd16d4992484fc8ec3f63a, type: 3}
+  Description: "Es una especie exclusiva de Colombia. \xC1rbol de dosel, de bosque
+    sub- andino, muy nublado y pluvial. Ocasionalmente se encuentran individuos aislados
+    creciendo en potreros y bordes de quebradas. Se ha recolectado con flores en
+    febrero, marzo, abril y noviembre, y con frutos en febrero, marzo y abril."
+  UniqueId: 4
+  nombreComun: "Magnolia del Sin\xFA "

@@ -1,0 +1,190 @@
+    void Anfibio1Clicked(RaycastHit2D hit)
+    {
+        // Elimina el anfibio y aumenta los puntos
+        Destroy(hit.collider.gameObject);
+        IncreasePoints();
+        anfibiosNumber++;
+        AudioSource.PlayClipAtPoint(correct, Camera.main.transform.position, 0.5f);
+        PlayerPrefs.SetInt("anfibiosNumber", anfibiosNumber);
+
+        if (alreadyAdded[0])
+        {
+            Debug.Log("DEBO LLEGAR");
+
+            Debug.Log(AnswersData.answers.Count);
+            for (int i = 0; i < AnswersData.answers.Count; i++)
+            {
+                if (AnswersData.answers[i].idEspecie == 0)
+                {
+                    AnswersData.answers[i].quantity = AnswersData.answers[i].quantity + 1;
+                    Debug.Log("cantidad: " + AnswersData.answers[i].quantity);
+                }
+            }
+        }
+
+        if (!Descubiertos.Contains(Disponibles[0]))
+        {
+            Descubiertos.Add(Disponibles[0]);
+            animales.Anfibios.Add(Disponibles[0]);
+            uniqueRegister++;
+            if (!alreadyAdded[0])
+            {
+                alreadyAdded[0] = true;
+                Answer answer = new Answer();
+                answer.imgId = 0;
+                answer.idEspecie = 0;
+                answer.minigameId = 1;
+                answer.quantity = 1;
+                AnswersData.answers.Add(answer);
+            }
+        }
+
+        discover++;
+        if (!firstDiscover)
+        {
+            firstDiscover = true;
+        }
+    }
+
+    void Anfibio2Clicked(RaycastHit2D hit)
+    {
+        // Elimina el anfibio y aumenta los puntos
+        Destroy(hit.collider.gameObject);
+        IncreasePoints();
+        anfibiosNumber++;
+        AudioSource.PlayClipAtPoint(correct, Camera.main.transform.position, 0.5f);
+        PlayerPrefs.SetInt("anfibiosNumber", anfibiosNumber);
+
+        if (!Descubiertos.Contains(Disponibles[1]))
+        {
+            Descubiertos.Add(Disponibles[1]);
+            animales.Anfibios.Add(Disponibles[1]);
+            uniqueRegister++;
+
+            if (alreadyAdded[1])
+            {
+                Debug.Log("DEBO LLEGAR");
+                for (int i = 0; i < AnswersData.answers.Count; i++)
+                {
+                    if (AnswersData.answers[i].idEspecie == 1)
+                    {
+                        AnswersData.answers[i].quantity = AnswersData.answers[i].quantity + 1;
+                        Debug.Log("cantidad: " + AnswersData.answers[i].quantity);
+                    }
+                }
+            }
+
+            if (!alreadyAdded[1])
+            {
+                alreadyAdded[1] = true;
+                Answer answer = new Answer();
+                answer.imgId = 1;
+                answer.idEspecie = 1;
+                answer.minigameId = 1;
+                answer.quantity = 1;
+                AnswersData.answers.Add(answer);
+            }
+        }
+
+        discover++;
+        if (!firstDiscover)
+        {
+            firstDiscover = true;
+        }
+    }
+
+    void Anfibio3Clicked(RaycastHit2D hit)
+    {
+        // Elimina el anfibio y aumenta los puntos
+        Destroy(hit.collider.gameObject);
+        IncreasePoints();
+        anfibiosNumber++;
+        AudioSource.PlayClipAtPoint(correct, Camera.main.transform.position, 0.5f);
+        PlayerPrefs.SetInt("anfibiosNumber", anfibiosNumber);
+
+        if (!Descubiertos.Contains(Disponibles[2]))
+        {
+            Descubiertos.Add(Disponibles[2]);
+            animales.Anfibios.Add(Disponibles[2]);
+            uniqueRegister++;
+
+            if (alreadyAdded[2])
+            {
+                Debug.Log("DEBO LLEGAR");
+
+                for (int i = 0; i < AnswersData.answers.Count; i++)
+                {
+                    if (AnswersData.answers[i].idEspecie == 3)
+                    {
+                        AnswersData.answers[i].quantity = AnswersData.answers[i].quantity + 1;
+                        Debug.Log("cantidad: " + AnswersData.answers[i].quantity);
+                    }
+                }
+            }
+
+            if (!alreadyAdded[2])
+            {
+                alreadyAdded[2] = true;
+                Answer answer = new Answer();
+                answer.imgId = 3;
+                answer.idEspecie = 3;
+                answer.minigameId = 1;
+                answer.quantity = 1;
+                AnswersData.answers.Add(answer);
+            }
+
+        }
+
+        discover++;
+        if (!firstDiscover)
+        {
+            firstDiscover = true;
+        }
+    }
+
+    void Anfibio4Clicked(RaycastHit2D hit)
+    {
+        // Elimina el anfibio y aumenta los puntos
+        Destroy(hit.collider.gameObject);
+        IncreasePoints();
+        anfibiosNumber++;
+        AudioSource.PlayClipAtPoint(correct, Camera.main.transform.position, 0.5f);
+        PlayerPrefs.SetInt("anfibiosNumber", anfibiosNumber);
+
+        if (alreadyAdded[3])
+        {
+            Debug.Log("DEBO LLEGAR");
+
+            for (int i = 0; i < AnswersData.answers.Count; i++)
+            {
+                if (AnswersData.answers[i].idEspecie == 2)
+                {
+                    AnswersData.answers[i].quantity = AnswersData.answers[i].quantity + 1;
+                    Debug.Log("cantidad: " + AnswersData.answers[i].quantity);
+                }
+            }
+        }
+
+        if (!Descubiertos.Contains(Disponibles[3]))
+        {
+            Descubiertos.Add(Disponibles[3]);
+            animales.Anfibios.Add(Disponibles[3]);
+            uniqueRegister++;
+            if (!alreadyAdded[3])
+            {
+                alreadyAdded[3] = true;
+                Answer answer = new Answer();
+                answer.imgId = 2;
+                answer.idEspecie = 2;
+                answer.minigameId = 1;
+                answer.quantity = 1;
+                AnswersData.answers.Add(answer);
+            }
+
+        }
+        discover++;
+        if (!firstDiscover)
+        {
+            firstDiscover = true;
+        }
+    }

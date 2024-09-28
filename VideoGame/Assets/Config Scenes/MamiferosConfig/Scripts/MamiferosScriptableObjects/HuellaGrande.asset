@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e235af6f449f9cf4789af33ef5743b1f, type: 3}
+  m_Name: HuellaGrande
+  m_EditorClassIdentifier: 
+  Name: Huella Grande
+  Description: "Las huellas grandes son caracter\xEDsticas de mam\xEDferos de gran
+    porte, como ciertos predadores o herb\xEDvoros. Estas huellas pueden ser profundas
+    y amplias, mostrando claros contornos de los dedos y robustas almohadillas. La
+    presencia de u\xF1as o garras tambi\xE9n puede ser evidente, lo que ayuda a diferenciar
+    entre especies carn\xEDvoras y herb\xEDvoras."
+  Image: {fileID: 1421196409, guid: 3fe6002204605cb4a9f97d21b316a9e1, type: 3}
+  id: 0
+  nombreComun: 'Especie probable: Oso'

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24fdc8ce2033c438386b23be0880e6, type: 3}
+  m_Name: Oruga
+  m_EditorClassIdentifier: 
+  Name: Oruga
+  Description: "Las orugas son t\xEDpicamente blandas y cil\xEDndricas. Algunas poseen
+    vistosos colores, que advierten de su toxicidad o desagradable sabor. Otras,
+    en cambio, son de colores cr\xEDpticos, similares al follaje en que se encuentran,
+    para escapar de la detecci\xF3n de depredadores. "
+  Image: {fileID: 21300000, guid: c6bfa1f6867461b43a7bf4fc6a0b3d20, type: 3}
+  UniqueId: 3
+  nombreComun: larva

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e235af6f449f9cf4789af33ef5743b1f, type: 3}
+  m_Name: HuellaMediana
+  m_EditorClassIdentifier: 
+  Name: Huella Mediana
+  Description: "Las huellas medianas corresponden a una variedad de mam\xEDferos
+    que no alcanzan las dimensiones de los grandes herb\xEDvoros o carn\xEDvoros,
+    pero que son significativamente m\xE1s grandes que los peque\xF1os roedores o
+    mam\xEDferos insect\xEDvoros. Estas huellas son menos profundas que las grandes,
+    pero m\xE1s definidas que las de los animales m\xE1s peque\xF1os, y pueden mostrar
+    una variedad de formas seg\xFAn la especie, desde huellas alargadas  hasta  m\xE1s
+    redondeadas."
+  Image: {fileID: -606389531, guid: 3fe6002204605cb4a9f97d21b316a9e1, type: 3}
+  id: 1
+  nombreComun: 'Especie probable: Puma'
