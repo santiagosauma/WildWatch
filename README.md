@@ -1,7 +1,8 @@
 # 🦅 WILDWATCH
 
 <div style="text-align: center;">
-  <img src="https://github.com/santiagosauma/Proyecto-AWAQ---MIDAS/raw/VIdeojuego/Assets/Config%20Scenes/MenuConfig/Images/WildWatch_logo_pixel_art_transparent_background.png" alt="WILDWATCH Logo" />
+  <img src="https://github.com/santiagosauma/Proyecto-AWAQ---MIDAS/blob/VIdeojuego/VideoGame/Assets/Config%20Scenes/MenuConfig/Images/WildWatch_logo_pixel_art_transparent_background-removebg-preview.png?raw=true" alt="WILDWATCH Logo" />
+  
 </div>
 
 
@@ -92,7 +93,7 @@ For more information about **AWAQ** and their initiatives, you can visit their w
 
 - **Website**: [http://www.awaq.org](https://www.somosawaq.org)
 - **Facebook**: [https://www.facebook.com/somosawaq](https://www.facebook.com/somosawaq)
-- **Instagram**: [[instagram.com/awaq_org](https://www.instagram.com/awaqongd/?igshid=MTk0NTkyODZkYg%3D%3D)
+- **Instagram**: [instagram.com/awaq_org](https://www.instagram.com/awaqongd/?igshid=MTk0NTkyODZkYg%3D%3D)
 - **LinkedIn**: [https://www.linkedin.com/company/awaq-org](https://www.linkedin.com/company/awaq-ongd/)
 
 Thank you for supporting wildlife conservation efforts through **WILDWATCH**! 🌿🦉
