@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eed1349f01cbee4c9c1a9960f1e5818, type: 3}
+  m_Name: Camara
+  m_EditorClassIdentifier: 
+  id: 0
+  quantity: 0
+  description: "Una c\xE1mara de bosque para biomonitorio de animales, tambi\xE9n
+    conocida como c\xE1mara trampa, es un dispositivo dise\xF1ado para capturar im\xE1genes
+    y v\xEDdeos de la vida silvestre en su entorno natural sin la necesidad de presencia
+    humana"
+  imagenItem: {fileID: 21300000, guid: 2cf1e506ccd1850458b860450d6f7f61, type: 3}

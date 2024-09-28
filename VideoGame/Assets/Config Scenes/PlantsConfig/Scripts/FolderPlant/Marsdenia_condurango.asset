@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d693fbe6f13e19b43b4e0dda85b0c510, type: 3}
+  m_Name: Marsdenia_condurango
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 88818f727bd61d64488c43beb4c4d507, type: 2}
+  - {fileID: 11400000, guid: 463bd525168388845ab655f8a725628d, type: 2}
+  - {fileID: 11400000, guid: e5838c05b9c076446af2d60b4db19538, type: 2}
+  - {fileID: 11400000, guid: a2ab196652ead05479ec228871ebf3d0, type: 2}
+  Name: Marsdenia condurango
+  Image: {fileID: 21300000, guid: 32d66f68ffb988f47b678bd9790c5067, type: 3}
+  Description: "El condurango es una planta vivaz, lignosa, de ra\xEDz gruesa y tallos
+    ramosos, trepadores. Alcanza alturas de 6 mts. sus hojas son pecioladas y sus
+    flores son peque\xF1as campanuladas, pedunculadas de color rojo sangre."
+  UniqueId: 2
+  nombreComun: Condurango

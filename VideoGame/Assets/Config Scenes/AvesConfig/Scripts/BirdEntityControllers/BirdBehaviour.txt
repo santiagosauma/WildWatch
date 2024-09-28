@@ -1,0 +1,31 @@
+void Update()
+{
+    transform.Translate(direction * speed * Time.deltaTime);
+
+    if (transform.position.x > maxX || transform.position.x < minX ||
+        transform.position.y > maxY || transform.position.y < minY)
+    {
+        Destroy(gameObject);
+        
+        UIController.instance.showButton();
+        
+        if(!avesController.instance.getDetected())
+        {
+            UIController.instance.showButton();
+            UIController.instance.showAvesBird();
+
+            SFXManagerBirds.instance.playInCorrect();
+            int matchID = PlayerPrefs.GetInt("MatchID");
+            int avesMistakeID = 5;
+            StartCoroutine(CreateError(matchID, avesMistakeID));
+        }
+        if (SwitchCamera.instance != null)
+        {
+            int round = avesController.instance.getRound();
+            if (round < 3)
+            {
+                Debug.Log("LLegue");
+                SwitchCamera.instance.ShowReadyC();
+            }
+        }
+    }

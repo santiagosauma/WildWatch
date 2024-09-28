@@ -1,0 +1,57 @@
+private void Update()
+{
+
+    GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+    foreach (GameObject bird in birds)
+    {
+        //Si el pajaro esta en la vista de los binoculares y aun no ha sido detectada
+        if (IsBirdInView(bird.transform.position) && !detected)
+        {
+            // Marca el ave como detectada añadiéndole el componente BirdDetected.
+            detected = true;
+
+            points+=24;
+            if(points > 100) points = 100;
+
+            avesDetected++;
+            PlayerPrefs.SetInt("avesNumber", avesDetected);
+            uiController.UpdateScore(points);
+            ShowPointsAnimation(bird.transform.position, true);
+            int birdID = BirdSpawner.Instance.getIdBird();
+
+            if (!Descubiertos.Contains(Disponibles[BirdSpawner.Instance.getIdBird()]))
+            {
+                Descubiertos.Add(Disponibles[BirdSpawner.Instance.getIdBird()]);
+                animales.Pajaros.Add(Disponibles[BirdSpawner.Instance.getIdBird()]);
+                uniqueRegisters++;
+                
+
+                if (!alreadyAdded[birdID])
+                {
+                    alreadyAdded[birdID] = true;
+                    Answer answer = new Answer();
+                    answer.imgId = birdID;
+                    answer.idEspecie = birdID;
+                    answer.minigameId = 0;
+                    answer.quantity = 1;
+                    AnswersData.answers.Add(answer);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < AnswersData.answers.Count; i++)
+                {
+                    if (AnswersData.answers[i].idEspecie == birdID)
+                    {
+                        AnswersData.answers[i].quantity += 1;
+                    }
+                }
+            }
+
+            ShowSaveDataBirds.instance.ShowInit();
+            SFXManagerBirds.instance.playCorrect();
+
+        }
+    }
+
+}

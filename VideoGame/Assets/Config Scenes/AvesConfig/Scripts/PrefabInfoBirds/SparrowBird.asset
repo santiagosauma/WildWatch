@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d5fb5e59696c24b97176218611e9e5, type: 3}
+  m_Name: SparrowBird
+  m_EditorClassIdentifier: 
+  Name: "Gorri\xF3n Passer domesticus"
+  Description: "El gorri\xF3n com\xFAn es un paseriforme de aspecto robusto y voluminoso
+    que posee un pico fuerte y un plumaje dominado por los tonos pardos en el dorso,
+    adornado con marcadas listas negras, y gris\xE1ceos en el obispillo, el pecho
+    y el vientre."
+  Image: {fileID: 21300000, guid: 66c7ba85dbf767043b22f37f18f420df, type: 3}
+  id: 5
+  nombreComun: "Gorri\xF3n Com\xFAn "

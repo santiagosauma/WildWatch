@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24fdc8ce2033c438386b23be0880e6, type: 3}
+  m_Name: Coccinellidae
+  m_EditorClassIdentifier: 
+  Name: Coccinellidae
+  Description: "Las mariquitas pertenecen al grupo de peque\xF1os cole\xF3pteros
+    o escarabajos de la familia Coccinellidae. Adem\xE1s de tener nombres cient\xEDficos
+    m\xE1s o menos raros o complejos, estos insectos son muy conocidos por su forma
+    redondeada caracter\xEDstica, sus colores y manchas brillantes. "
+  Image: {fileID: 21300000, guid: f0dcc359c93ce274abebe5ad721ca134, type: 3}
+  UniqueId: 1
+  nombreComun: Mariquita

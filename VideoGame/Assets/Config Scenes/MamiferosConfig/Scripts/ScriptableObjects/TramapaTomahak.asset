@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eed1349f01cbee4c9c1a9960f1e5818, type: 3}
+  m_Name: TramapaTomahak
+  m_EditorClassIdentifier: 
+  id: 2
+  quantity: 3
+  description: "Las trampas Tomahawk son trampas de captura viva dise\xF1adas para
+    atrapar una amplia variedad de animales de tama\xF1o peque\xF1o a grande, ofrecen
+    la seguridad de un manejo humano para los animales capturados, facilitando su
+    liberaci\xF3n o traslado\_posterior."
+  imagenItem: {fileID: 21300000, guid: 0460832078c06c64397b28c1f304d0f6, type: 3}
