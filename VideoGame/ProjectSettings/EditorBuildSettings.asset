@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu/MainMenu.unity
+    guid: 5b3f60ff55ebdd447a1786a3318973af
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Anfibios/AnfibiosScene.unity
+    guid: 9adb3ca384de05f4eaf535bceb561a1a
+  - enabled: 1
+    path: Assets/Scenes/Aves/AvesScene.unity
+    guid: 78ed2a1a82125e1409c4e8dbfb3bf33f
+  - enabled: 1
+    path: Assets/Scenes/House/HouseScene.unity
+    guid: 6954e9d77eaa8e94ca6fba771bb575f6
+  - enabled: 1
+    path: Assets/Scenes/Insectos/InsectosScene.unity
+    guid: a98a735e90538204587d6fb352131b7d
+  - enabled: 1
+    path: Assets/Scenes/LoadingScreen/LoadingMinigame.unity
+    guid: 04bea3b23a9432949b1659aaa32eae21
+  - enabled: 1
+    path: Assets/Scenes/Mamiferos/MamiferosCentral.unity
+    guid: fbee9a8389670f5469e9f11dad35b1e3
+  - enabled: 1
+    path: Assets/Scenes/Menu/Loading.unity
+    guid: e5d11592a2d07b347b4b18894e674a03
+  - enabled: 1
+    path: Assets/Scenes/Plantas/PlantasScene.unity
+    guid: 849e2f320c8885940ba74b28e78e1e1c
+  - enabled: 1
+    path: Assets/Scenes/House/TutorialScene.unity
+    guid: a339bafbe90038a49bfada3176115168
+  m_configObjects: {}

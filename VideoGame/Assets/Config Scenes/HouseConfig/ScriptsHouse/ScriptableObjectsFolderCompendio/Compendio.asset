@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3edb4d6ef7976b4790c1fefb0f3d343, type: 3}
+  m_Name: Compendio
+  m_EditorClassIdentifier: 
+  Pajaros:
+  - {fileID: 11400000, guid: a7edad8686cfdf747b3e302e15d90e73, type: 2}
+  - {fileID: 11400000, guid: 0ee11d5b58baaca4798cf36f769d0a0c, type: 2}
+  - {fileID: 11400000, guid: c3a314eafbdc4ba43b2f77caae88a943, type: 2}
+  - {fileID: 11400000, guid: c0664c65628a2ca4985e4d5359ddced6, type: 2}
+  - {fileID: 11400000, guid: 437aff80dac9d3541a4987bbad4b1c01, type: 2}
+  Anfibios:
+  - {fileID: 11400000, guid: 63347b66183bb9442b26791b76b51d02, type: 2}
+  - {fileID: 11400000, guid: 4ea2960a225d6e3449551888ba549af5, type: 2}
+  - {fileID: 11400000, guid: d6b51ae945d852b43a78af17546d4771, type: 2}
+  - {fileID: 11400000, guid: 8d88d301163f06e4b96c6b6c66161e1e, type: 2}
+  Insectos:
+  - {fileID: 11400000, guid: ea0c780ef4557884293b6640c03abde9, type: 2}
+  - {fileID: 11400000, guid: 737f3629eb5ddcc4ab519c6868774430, type: 2}
+  - {fileID: 11400000, guid: 2d8d69a5365caeb4a8b5ca2da1521c5f, type: 2}
+  - {fileID: 11400000, guid: e53517c7f7ecb124aa7f04bd8162999e, type: 2}
+  Mamiferos:
+  - {fileID: 11400000, guid: 7bce89845af57ba459b21ceed40e6e70, type: 2}
+  - {fileID: 11400000, guid: a1ccf4f2991356d489ab3d781f78fda7, type: 2}
+  - {fileID: 11400000, guid: fde4332f601947643a98266cf259a107, type: 2}
+  Plantas:
+  - {fileID: 11400000, guid: 60a74edbbbe342b4d8c4e089fc89eb3f, type: 2}
+  - {fileID: 11400000, guid: 628de266d49b77742b7bd3788a7c5c9e, type: 2}
+  - {fileID: 11400000, guid: 95f46629194a93a4aadc4db38335d449, type: 2}
+  - {fileID: 11400000, guid: b76e494d9ae707f4d8912b9e21185b0b, type: 2}
+  - {fileID: 11400000, guid: 0b79eb7d59dd8bb4e9d382a25f98cc85, type: 2}

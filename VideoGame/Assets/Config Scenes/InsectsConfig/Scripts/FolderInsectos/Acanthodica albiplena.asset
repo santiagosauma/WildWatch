@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24fdc8ce2033c438386b23be0880e6, type: 3}
+  m_Name: Acanthodica albiplena
+  m_EditorClassIdentifier: 
+  Name: Acanthodica
+  Description: "Acanthodica es un g\xE9nero de insectos perteneciente a la familia
+    Tettigoniidae, m\xE1s com\xFAnmente conocidos como los grillos de arbusto o kat\xEDdidos.
+    Los miembros de este g\xE9nero son reconocidos por sus cuerpos largos y delgados,
+    y por sus patas traseras que est\xE1n adaptadas para saltar. Poseen antenas que
+    pueden ser tan largas o incluso m\xE1s largas que sus propios cuerpos."
+  Image: {fileID: 21300000, guid: 6eb64ff397f8f2e49b1bcb29a6b0c30c, type: 3}
+  UniqueId: 0
+  nombreComun: Grillo
