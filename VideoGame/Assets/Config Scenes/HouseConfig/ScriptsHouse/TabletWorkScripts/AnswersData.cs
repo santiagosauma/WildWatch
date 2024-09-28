@@ -5,7 +5,7 @@
 //      * It is used to store a list of answers, which can be accessed 
 //      * and modified as needed during gameplay.
 // Authors:
-//      * Luis Santiago Sauma Peñaloza A00836418
+//      * Luis Santiago Sauma Peï¿½aloza A00836418
 //      * Edsel De Jesus Cisneros Bautista A00838063
 //      * Abdiel Fritsche Barajas A01234933
 //      * Javier Carlos Ayala Quiroga A01571468
