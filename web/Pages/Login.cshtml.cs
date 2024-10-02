@@ -65,8 +65,7 @@ namespace midas.Pages
                                     {
                                         return RedirectToPage("/User", new { id = userId });
                                     }
-                                }
-                                else
+                                } else
                                 {
                                     Message = "Su cuenta ha sido inhabilitada. Contacte un administrador.";
                                     return Page();
