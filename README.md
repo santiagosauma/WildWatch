@@ -1,10 +1,7 @@
 <div style="text-align: center;">
   # 🦅 WILDWATCH
 
-
   <img src="https://github.com/santiagosauma/Proyecto-AWAQ---MIDAS/blob/main/VideoGame/Assets/Config%20Scenes/MenuConfig/Images/WildWatch_logo_pixel_art_transparent_background.png?raw=true" alt="WILDWATCH Logo" />
-
-
 
 ## 🌍 Overview
 
@@ -19,6 +16,7 @@ The game is developed using **Unity** and is specifically designed to be played 
 - **🏠 Central Hub (The House)**: The game begins with a tutorial inside a house, which serves as the central hub. Here, players learn how to use the in-game tablet (iPad) to navigate the game and record species. From the house, players can access each of the five mini-games through doors that lead to different environments. Above each door, players can see their score represented by stars, which reflect their performance in the respective mini-game.
 
 - **🕹️ 5 Engaging Mini-Games**: Each mini-game represents a different sampling method:
+
   - **🐜 Insects**: A memorization game where the player uses a lamp to spot insects moving around. The player must move the lamp to shine light on the insects, and after a certain time, they will need to identify the type of insects observed.
   - **🐸 Amphibians and Reptiles**: The player clicks on rocks and plants to discover hidden amphibians and reptiles. This must be done within a time limit, encouraging quick thinking and fast identification to find all the hidden creatures.
   - **🦝 Mammals**: Set up traps based on animal tracks and learn about track stations for monitoring mammals.
@@ -34,19 +32,22 @@ The game is developed using **Unity** and is specifically designed to be played 
 ## 🚀 Installation and Execution
 
 ### 1. **Clone the Repository with the 'VIdeojuego' Branch**:
-   ```bash
-   git clone --branch VIdeojuego https://github.com/santiagosauma/Proyecto-AWAQ---MIDAS.git
-   ```
+
+```bash
+git clone --branch VIdeojuego https://github.com/santiagosauma/Proyecto-AWAQ---MIDAS.git
+```
 
 This command clones the `VIdeojuego` branch of the repository, which contains the code for the **WILDWATCH** game.
 
 2. **Open the Project in Unity**:
+
    - Open **Unity Hub**.
    - Click on `Add` and select the folder where you cloned the repository.
    - Open the project and wait for Unity to load all assets.
    - Ensure that you are using the correct version of Unity that is compatible with the project (this information is typically found in the `ProjectSettings`).
 
 3. **Run the Game**:
+
    - Press the `Play` button in Unity to start the game.
    - The game will launch, beginning with the tutorial in the house. Follow the instructions to learn how to navigate and use the in-game tablet.
 
@@ -55,7 +56,6 @@ This command clones the `VIdeojuego` branch of the repository, which contains th
    - Select `iOS` as the platform and configure the necessary settings.
    - Connect your iPad, build, and deploy the game to test it on the actual device.
 
-     
 ## 🐛 Reporting Bugs
 
 If you encounter any bugs or issues while using **WILDWATCH**, please report them by sending an email to [bugreports@WILDWATCH](mailto:A01234933@tec.mx) or [support@WILDWATCH](mailto:A00836418@tec.mx).. Include the following details to help us address the issue more effectively:
@@ -69,7 +69,6 @@ If you encounter any bugs or issues while using **WILDWATCH**, please report the
 
 We appreciate your feedback and will work to resolve any issues as quickly as possible. Thank you for helping us improve **WILDWATCH**!
 
-
 ## 👥 Project Participants
 
 The **WILDWATCH** project was developed by a dedicated team of students as part of a school project. Below is a list of the participants and their roles:
@@ -78,7 +77,7 @@ The **WILDWATCH** project was developed by a dedicated team of students as part 
 - **Edsel De Jesus Cisneros Bautista** - Documentation, QA Tester
 - **Abdiel Fritsche Barajas** - Game Developer, Level Desing Developer, UI/UX Game Developer
 - **Javier Carlos Ayala Quiroga** - Game Developer
-- **David Balleza Ayala** - Fullstack Developer, 
+- **David Balleza Ayala** - Fullstack Developer,
 - **Fernando Espidio Santamaria** - Game Developer, Level Desing Developer
 
 We are proud of the work we've accomplished together on this project and hope that it contributes to the important efforts of wildlife conservation.
