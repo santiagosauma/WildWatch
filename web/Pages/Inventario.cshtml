@@ -1,0 +1,186 @@
+﻿@page
+@model midas.Pages.InventarioModel
+@{
+    ViewData["Title"] = "Inventario";
+}
+
+<style>
+
+    .inventory-search-container, .inventory-categories {
+        background-color: #AFAFAF;
+        border-radius: .5rem;
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+        text-align: center;
+    }
+
+    .inventory-categories ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .inventory-categories li {
+        background-color: #F5EFD9;
+        padding: .5rem;
+        border: 1px solid #000;
+        margin-bottom: .5rem;
+        cursor: pointer;
+    }
+
+    .inventory-categories li:hover {
+        background-color: #E0D0C9;
+       }
+
+
+    .animal-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .animal-card > * {
+            cursor: pointer;
+        }
+
+        .animal-card img {
+
+            width: 100%;
+            flex-grow: 1;
+            object-fit: cover;
+            border-top-left-radius: .5rem;
+            border-top-right-radius: .5rem;
+        }
+
+        .animal-card h5 {
+            margin: 0;
+            background-color: #D9D9D9;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            flex-shrink: 0;
+            width: 100%;
+            border-bottom-left-radius: .5rem;
+            border-bottom-right-radius: .5rem;
+        }
+
+    a {
+        text-decoration: none;
+    }
+
+</style>
+
+<div class="d-flex" style="height: 100vh; overflow: hidden;">
+    <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page">
+                    <img src="~/images/Estesi.png" alt="Dashboard" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item" style="width: 100%;">
+                <a href="@Url.Page("/User", new { id = Model.UserId })">
+                    <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;">
+                </a>
+            </li>
+            <li the nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2">
+                    <img src="~/images/Notas.png" alt="Menú" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid p-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <h1 class="fw-bold">Inventario</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height: calc(100vh - 94px);">
+            <div class="col-3">
+                <div class="inventory-search-container">
+                    <label for="search" class="form-label" style="font-weight:bold">Buscar:</label>
+                    <input type="text" id="search" placeholder="Ej: Puma, Margarita, Cóndor..." class="form-control" oninput="searchAllCategories()">
+                </div>
+                <div class="inventory-categories">
+                    <h3>Categorías de Especies</h3>
+                    <ul>
+                        <li data-category-id="1" data-url="@Url.Page("/Inventario", "SeresVivos")">Aves</li>
+                        <li data-category-id="2" data-url="@Url.Page("/Inventario", "SeresVivos")">Mamíferos</li>
+                        <li data-category-id="3" data-url="@Url.Page("/Inventario", "SeresVivos")">Insectos</li>
+                        <li data-category-id="5" data-url="@Url.Page("/Inventario", "SeresVivos")">Plantas</li>
+                        <li data-category-id="4" data-url="@Url.Page("/Inventario", "SeresVivos")">Anfibios y Reptiles</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-9 h-100 inventory">
+                    <div class="inventory-main-content">
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        cargarTodos();
+
+        document.querySelectorAll('.inventory-categories li').forEach(item => {
+            item.addEventListener('click', function () {
+                var categoryId = this.getAttribute('data-category-id');
+                fetch(`/Inventario?handler=SeresVivosPorCategoria&categoriaId=${categoryId}`)
+                    .then(response => response.json())
+                    .then(data => displayAnimals(data))
+                    .catch(error => console.error('Error fetching data:', error));
+            });
+        });
+
+        var searchInput = document.getElementById('search');
+        var inventoryContent = document.getElementById('inventory-main-content');
+
+        searchInput.addEventListener('input', function () {
+            if (this.value.length >= 2) {
+                fetch(`/Inventario?handler=Buscar&search=${encodeURIComponent(this.value)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length) {
+                            displayAnimals(data);
+                            inventoryContent.style.justifyContent = 'flex-start';
+                        } else {
+                            inventoryContent.innerHTML = '<p>No se encontraron resultados.</p>';
+                            inventoryContent.style.justifyContent = 'flex-start';
+                        }
+                    })
+                    .catch(error => console.error('Error searching:', error));
+            } else if (this.value.length === 0) {
+                cargarTodos();
+                inventoryContent.style.justifyContent = 'center';
+            }
+        });
+    });
+
+    function cargarTodos() {
+        fetch('/Inventario?handler=CargarTodos')
+            .then(response => response.json())
+            .then(data => displayAnimals(data))
+            .catch(error => console.error('Error loading all data:', error));
+    }
+
+    function displayAnimals(data) {
+        var mainContent = document.querySelector('.inventory-main-content');
+        mainContent.innerHTML = '';
+        data.forEach(ser => {
+            var card = document.createElement('a');
+            card.href = `/DetallesAnimal/${ser.id}`;
+            card.className = 'animal-card';
+            card.innerHTML = `
+            <img src="${ser.imagen}" alt="Imagen de ${ser.nombre}" style="height: 180px; object-fit: cover;">
+            <h5>${ser.nombre}</h5>
+        `;
+            mainContent.appendChild(card);
+        });
+    }
+</script>

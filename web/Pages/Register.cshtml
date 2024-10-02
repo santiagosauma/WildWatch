@@ -1,0 +1,68 @@
+@page
+@model midas.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container vh-100 d-flex flex-column justify-content-center m-0">
+    <a href="/Index" style="position: absolute; top: 10px; left: 10px; font-size: 24px; text-decoration: none; color: #3b2a18">X</a>
+    <div class="row vw-100 justify-content-between">
+        <div class="col-md-6 p-0">
+            <form method="post" class="max-w-600 p-4 mx-auto">
+                @if (!string.IsNullOrEmpty(Model.Message))
+                {
+                        <div class="text-center alert @(Model.Message.StartsWith("Registro Exitoso") ? "alert-success" : "alert-warning")" role="alert">
+                        @Model.Message
+                        </div>
+                }
+
+                <div class="text-center mb-4">
+                    <a href="https://www.somosawaq.org">
+                        <img class="mb-4" src="~/images/awaq-logo.png" alt="AWAQ Estaciones Biológicas" height="72">
+                    </a>
+                    <h1 class="h3 mb-3 font-weight-normal">¿Listo para ser un biomonitor?</h1>
+                    <p>¡Regístrate!</p>
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Nombre completo" required autofocus>
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="mail">Correo electrónico</label>
+                    <input type="email" id="mail" name="mail" class="form-control" placeholder="Correo electrónico" required>
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="password" asp-for="Password">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-2 d-flex justify-content-between">
+                    <div class="checkbox col-auto text-start">
+                        <label>
+                            <input type="checkbox" value="true" name="acceptedTerms" required> Acepto los <a href="https://www.somosawaq.org/aviso-legal" target="_blank" style="color: #3b2a18">términos y condiciones</a>
+                        </label>
+                    </div>
+                    <div class="col-auto text-end">
+                        <a href="/Login" style="color: #3b2a18">Ya tengo una cuenta</a>
+                    </div>
+                </div>
+
+                <button class="btn awaq-btn-primary mx-auto text-white w-100" type="submit">Registrarse</button>
+                <p class="mt-5 mb-3 text-muted text-center">
+                    <a href="https://www.somosawaq.org/somos" class="text-muted" style="text-decoration: none;">&copy; 2024 AWAQ Estaciones Biológicas</a>
+                </p>
+            </form>
+        </div>
+        <div class="col-md-6 bg-cover-register p-0"></div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

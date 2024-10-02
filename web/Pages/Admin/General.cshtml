@@ -1,0 +1,109 @@
+﻿@page
+@model midas.Pages.Admin.GeneralModel
+@{
+    ViewData["Title"] = "Dashboard - Administración";
+}
+<head>
+    <script src="https://unpkg.com/chart.js"></script>
+</head>
+
+<div class="d-flex" style="height: 100vh; overflow: hidden;">
+    <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #3b2a18;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="https://www.somosawaq.org/" target="_blank" class="nav-link text-white p-0 my-2" aria-current="page" style="display: block;">
+                    <img src="~/images/Estesi.png" alt="Dashboard" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/General" class="nav-link text-white p-0 my-2" aria-current="page" style="display: block;">
+                    <img src="~/images/dotmenu.png" alt="Menú" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/User" class="nav-link text-white p-0 my-2" aria-current="page" style="display: block;">
+                    <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex-grow-1 p-3 d-flex flex-column">
+        <h1 style="color: #3b2a18; font-size: 1.5rem;">Visión de Administrador - General</h1>
+        <div class="d-flex mb-3" style="height: 50%; gap: 10px;">
+            <div style="flex: 1; background-color: transparent;  border-radius: 10px;">
+                <iframe width="100%" height="100%" src="https://lookerstudio.google.com/embed/reporting/797d6365-a0dc-4f61-86c9-d8b1aefbc829/page/eWbwD" frameborder="0" style="border:0; border-radius: 10px;" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+            <div style="flex: 1; background-color: #AFAFAF; border-radius: 10px; overflow: hidden;">
+                <iframe src="https://lookerstudio.google.com/embed/reporting/21035bea-aa42-4918-af72-5d77683f2da2/page/OeKwD" frameborder="0" style="border:0; width: 100%; height: 100%; border-radius: 10px;" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+        </div>
+        <div class="d-flex" style="height: 50%; gap: 10px;">
+            <div class="d-flex" style="flex: 1; gap: 10px;">
+                <div style="flex: 1; background-color: #AFAFAF; border-radius: 10px;">
+                    <canvas style="width: 100%; height: 100%" id="ageCompletionChart"></canvas>
+                </div>
+                <div style="flex: 1; background-color: #AFAFAF; border-radius: 10px; overflow: hidden;">
+                    <iframe src="https://lookerstudio.google.com/embed/reporting/355dacdf-f79e-4e9d-bdee-0e24cce76b08/page/dxdwD" frameborder="0" style="border:0; width: 100%; height: 100%; border-radius: 10px;" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                </div>
+            </div>
+            <div style="flex: 1; background-color: #AFAFAF; border-radius: 10px; overflow: hidden;">
+                <iframe src="https://lookerstudio.google.com/embed/reporting/1925297f-08f9-422d-a163-3b12853d0e13/page/cwXwD" frameborder="0" style="border: 1px solid #8C8C8C; width: 100%; height: 100%; border-radius: 10px;" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://unpkg.com/chart.js"></script>
+    <script>
+        @functions {
+            public string SerializeObject(object obj)
+            {
+                return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            }
+        }
+
+        var completionsData = @Html.Raw(SerializeObject(Model.CompletitionsByAge.Select(c => c.Completitions)));
+        var ageLabels = @Html.Raw(SerializeObject(Model.CompletitionsByAge.Select(c => c.Range)));
+
+        var doughnutData = {
+            labels: ageLabels,
+            datasets: [{
+                data: completionsData,
+            backgroundColor: ['#2B5628', '#A0AF14', '#3B2A18', '#AFAFAF'],
+                borderWidth: 0
+            }]
+        };
+
+        var doughnutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '60%',
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: '#000000'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Porcentaje de Completado separado por edad',
+                    color: '#000',
+                    font: {
+                        size: 18
+                    }
+                }
+            }
+        };
+
+        var ctxDoughnut = document.getElementById('ageCompletionChart').getContext('2d');
+
+        var ageCompletionChart = new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: doughnutData,
+            options: doughnutOptions
+        });
+    </script>
+}

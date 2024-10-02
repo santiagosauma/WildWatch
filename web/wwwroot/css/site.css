@@ -1,0 +1,143 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.container {
+    max-width: 100vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+.full-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/big-background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.bg-cover-login {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-image: url('../images/awaq-bg-2.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.bg-cover-register {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-image: url('../images/awaq-bg-1.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+@media (max-width: 768px) { 
+    .bg-cover-login {
+        background-image: none !important; 
+    }
+    .bg-cover-register {
+        background-image: none !important;
+    }
+}
+
+
+.awaq-btn-primary {
+    background-color: #2B5628;
+    border-color: #2B5628;
+}
+
+    .awaq-btn-primary:hover {
+        color: #fff;
+        background-color: #2B5628;
+        border-color: #2B5628;
+    }
+
+awaq-btn-primary:active {
+    color: #fff;
+    background-color: #2B5628;
+    border-color: #0a58ca;
+}
+
+.max-w-600 {
+    max-width: 600px;
+}
+
+.margin_alert {
+
+}
+
+.bg-cover-custom {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-image: url('../images/awaq-bg-3.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.custom-select-gender {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-size: 1em;
+    padding-right: 3em;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    height: calc(1.5em + 0.75rem + 2px);
+}
+
+
+.inventory-main-content {
+    background-color: #AFAFAF;
+    border-radius: .5rem;
+    overflow: auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .inventory-main-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .inventory-main-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

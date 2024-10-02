@@ -1,0 +1,128 @@
+﻿@page "/DetallesAnimal/{id:int}"
+@model midas.Pages.DetallesAnimalModel
+@{
+    ViewData["Title"] = "Detalles del Animal";
+}
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .container-fluid {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .main-container {
+        background-color: #F8E8B6;
+        border: 1vw solid #CDA373;
+        border-radius: 10px;
+        padding: 15px;
+        box-sizing: border-box;
+        height: calc(100% - 30px);
+        overflow: hidden;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .full-width, .half-width {
+        padding: 20px;
+        box-sizing: border-box;
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .half-width {
+        flex-basis: 50%;
+    }
+
+    .full-width {
+        flex-basis: 100%;
+    }
+
+    .inventory-title {
+        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .back-button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+</style>
+
+
+<div class="d-flex" style="height: 100vh; overflow: hidden;">
+    <div class="d-flex flex-column flex-shrink-0 p-1 justify-content-center" style="width: 75px; background-color: #2B5628;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white p-0 my-2" aria-current="page">
+                    <img src="~/images/Estesi.png" alt="Dashboard" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+            <li class="nav-item" style="width: 100%;">
+                <a href="@Url.Page("/User", new { id = Model.UserId })">
+                    <img src="~/images/user.png" alt="Usuarios" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;">
+                </a>
+            </li>
+            <li the nav-item">
+                <a href="/Inventario" class="nav-link text-white p-0 my-2">
+                    <img src="~/images/Notas.png" alt="Menú" style="width: 48px; height: 48px; display: block; margin-left: auto; margin-right: auto;" />
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="inventory-title">
+            <a href="/Inventario" class="nav-link text-white p-0 my-2" aria-current="page">
+                <img src="~/images/flecha.png" alt="Back" style="width:40px; height:40px;" />
+            </a>
+            Inventario - @Model.Animal.Nombre
+        </div>
+        <div class="main-container">
+            <div class="row mb-4" style="height: 60%;">
+                <div class="col d-flex flex-column justify-content-center" style="height: 100%">
+                    <div class="text-center mb-2">
+                        <h1 class="fs-1 fw-semibold">@Model.Animal.Nombre</h1>
+                        <h2 class="fs-1 fw-medium fst-italic">(@Model.Animal.NombreCientifico)</h2>
+                    </div>
+                    <div class="text-center">
+                        @if (Model.Animal.Sonido != null)
+                        {
+                            <audio controls controlsList="nodownload noplaybackrate">
+                                <source src="@Model.Animal.Sonido" type="audio/mpeg">
+                                No se puede reproducir audio en tu navegador
+                            </audio>
+                        }
+                    </div>
+                </div>
+                <div class="col" style="height: 100%">
+                    <img src="@Model.Animal.Imagen" style="width: 100%; height: 100%; border-radius: inherit; object-fit: cover; border-radius: 10px"/>
+                </div>
+            </div>
+            <div class="row" style="height: 40%;">
+                <div>
+                    <h3 class="text-start description-title fst-italic">Descripción:</h3>
+                    <p class="description-text">@Model.Animal.Descripcion</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

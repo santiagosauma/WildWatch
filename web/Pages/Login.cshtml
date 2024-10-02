@@ -1,0 +1,58 @@
+@page
+@model midas.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container vh-100 d-flex flex-column justify-content-center m-0">
+    <a href="/Index" style="position: absolute; top: 10px; left: 10px; font-size: 24px; text-decoration: none; color: #3b2a18">X</a>
+    <div class="row vw-100 justify-content-between">
+        <div class="col-md-6 p-0">
+            <form method="post" class="max-w-600 p-4 mx-auto">
+                @if (!string.IsNullOrEmpty(Model.Message))
+                {
+                    <div class="alert @(Model.Message.Contains("exitoso") ? "alert-success" : "alert-danger")" role="alert">
+                        @Model.Message
+                    </div>
+
+                }
+                <div class="text-center mb-4">
+                    <a href="https://www.somosawaq.org">
+                        <img class="mb-4" src="~/images/awaq-logo.png" alt="AWAQ Estaciones Biológicas" height="72">
+                    </a>
+                    <h1 class="h3 mb-3 font-weight-normal">¡Bienvenido de Vuelta!</h1>
+                    <p>Ingresa tus datos para iniciar sesión</p>
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="mail" name="mail" class="form-control" placeholder="Correo electrónico" required autofocus>
+                </div>
+
+                <div class="form-label-group mb-2">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                </div>
+
+                <div class="row mb-2 d-flex">
+                    <div class="col-auto text-end">
+                        <a href="/Register" style="color: #3b2a18">No tengo una cuenta</a>
+                    </div>
+                </div>
+
+                <button class="btn awaq-btn-primary text-white w-100" type="submit">Iniciar Sesión</button>
+                <p class="mt-5 mb-3 text-muted text-center">
+                    <a href="https://www.somosawaq.org/somos" class="text-muted" style="text-decoration: none;">&copy; 2024 AWAQ Estaciones Biológicas</a>
+                </p>
+            </form>
+        </div>
+        <div class="col-md-6 bg-cover-login p-0">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
