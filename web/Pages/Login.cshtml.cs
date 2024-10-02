@@ -30,7 +30,7 @@ namespace midas.Pages
                 return Page();
             }
 
-            string connectionString = "Server={serverURL};Port=12470;Database=wildwatch;Uid=avnadmin;password='{password}';";
+            string connectionString = "{connectionStringSecret}";
             try
             {
                 using (var connection = new MySqlConnection(connectionString))

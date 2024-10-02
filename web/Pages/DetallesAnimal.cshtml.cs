@@ -11,7 +11,7 @@ namespace midas.Pages
     {
         public int? UserId { get; private set; }
 
-        string _connectionString = "Server={serverURL};Port=12470;Database=wildwatch;Uid=avnadmin;password='{password}';";
+        string _connectionString = "{connectionStringSecret}";
 
         public SerVivo Animal { get; set; }
 
