@@ -11,7 +11,7 @@ namespace midas.Pages
     {
         public int? UserId { get; private set; }
 
-        string _connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
+        string _connectionString = "Server={serverURL};Port=12470;Database=wildwatch;Uid=avnadmin;password='{password}';";
 
         public SerVivo Animal { get; set; }
 

@@ -47,7 +47,7 @@ namespace midas.Pages
                 return Page();
             }
 
-            string connectionString = "Server=awaqdatabase-tec-932c.b.aivencloud.com;Port=12470;Database=wildwatch;Uid=avnadmin;password='AVNS_MRjSuICGDdluhdCYbor';";
+            string connectionString = "Server={serverURL};Port=12470;Database=wildwatch;Uid=avnadmin;password='{password}';";
             try
             {
                 using (var connection = new MySqlConnection(connectionString))
