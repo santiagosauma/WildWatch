@@ -9,7 +9,7 @@
 
 The game is developed using **Unity** and is specifically designed to be played on **iPads**. It includes a central hub and five main mini-games, each tailored to simulate the specific sampling methods for different categories. Additionally, players will use an in-game notebook to record and identify species as they progress through the mini-games. This notebook is later used to fill in a tablet with details such as the species, quantity, and observations.
 
-**This project is strictly educational and non-commercial, developed with no intent for profit.**
+**This project is strictly educational and non-commercial, developed with no intent for profit.** 
 
 ## 🎮 Features
 
